@@ -121,6 +121,5 @@ struct Writer_s WriterVideoMJPEG =
 {
 	&reset,
 	&writeData,
-	NULL,
 	&caps
 };
