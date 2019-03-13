@@ -9,7 +9,7 @@ AM_LDFLAGS = -lpthread
 
 if BOXTYPE_DUCKBOX
 AM_CXXFLAGS += \
-	-I $(top_srcdir)/libdvbci
+	-I $(top_srcdir)/libdvbci -std=gnu++11
 endif
 
 if BOXTYPE_ARMBOX
