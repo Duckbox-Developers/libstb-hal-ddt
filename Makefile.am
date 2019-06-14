@@ -17,11 +17,13 @@ SUBDIRS += libtriple
 libstb_hal_la_LIBADD += \
 	libtriple/libtriple.la
 endif
+
 if BOXTYPE_AZBOX
 SUBDIRS += libazbox
 libstb_hal_la_LIBADD += \
 	libazbox/libazbox.la
 endif
+
 if BOXTYPE_GENERIC
 if BOXMODEL_RASPI
 SUBDIRS += libraspi
@@ -33,6 +35,7 @@ libstb_hal_la_LIBADD += \
 	libgeneric-pc/libgeneric.la
 endif
 endif
+
 if BOXTYPE_SPARK
 #libstb_hal_test_LDADD += -lasound
 SUBDIRS += libspark libeplayer3-sh4
@@ -40,6 +43,7 @@ libstb_hal_la_LIBADD += \
 	libspark/libspark.la \
 	libeplayer3-sh4/libeplayer3_sh4.la
 endif
+
 if BOXTYPE_DUCKBOX
 #libstb_hal_test_LDADD += -lasound
 SUBDIRS += libduckbox libeplayer3-sh4 libdvbci
@@ -48,6 +52,7 @@ libstb_hal_la_LIBADD += \
 	libeplayer3-sh4/libeplayer3_sh4.la \
 	libdvbci/libdvbci.la
 endif
+
 if BOXTYPE_ARMBOX
 if BOXMODEL_HD60
 SUBDIRS += libarmbox
@@ -61,21 +66,21 @@ libstb_hal_la_LIBADD += \
 	libdvbci/libdvbci.la
 
 if !ENABLE_GSTREAMER_10
-SUBDIRS += libeplayer3-arm
-
+SUBDIRS += libeplayer3
 libstb_hal_la_LIBADD += \
-	libeplayer3-arm/libeplayer3_arm.la
+	libeplayer3/libeplayer3.la
 endif
 endif
 endif
+
 if BOXTYPE_MIPSBOX
 SUBDIRS += libmipsbox libdvbci
 libstb_hal_la_LIBADD += \
 	libmipsbox/libmipsbox.la \
 	libdvbci/libdvbci.la
-SUBDIRS += libeplayer3-mips
+SUBDIRS += libeplayer3
 libstb_hal_la_LIBADD += \
-	libeplayer3-mips/libeplayer3_mips.la
+	libeplayer3/libeplayer3.la
 endif
 
 pkginclude_HEADERS = \
