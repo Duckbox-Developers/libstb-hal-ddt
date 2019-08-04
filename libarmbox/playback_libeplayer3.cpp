@@ -791,8 +791,6 @@ void cPlayback::RequestAbort()
 
 		mutex.unlock();
 
-		while (player->playback->isPlaying)
-			usleep(100000);
 	}
 }
 
