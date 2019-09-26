@@ -64,12 +64,12 @@ SUBDIRS += libarmbox libdvbci
 libstb_hal_la_LIBADD += \
 	libarmbox/libarmbox.la \
 	libdvbci/libdvbci.la
+endif
 
 if !ENABLE_GSTREAMER_10
 SUBDIRS += libeplayer3
 libstb_hal_la_LIBADD += \
 	libeplayer3/libeplayer3.la
-endif
 endif
 endif
 
