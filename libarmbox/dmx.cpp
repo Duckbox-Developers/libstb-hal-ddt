@@ -74,7 +74,7 @@ static const char *DMX_T[] = {
 #if BOXMODEL_VUULTIMO4K
 #define NUM_DEMUX 24
 #else
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUUNO4KSE
 #define NUM_DEMUX 16
 #else
 #define NUM_DEMUX 4
@@ -84,7 +84,7 @@ static const char *DMX_T[] = {
 #if BOXMODEL_VUULTIMO4K
 static int dmx_source[NUM_DEMUX] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 #else
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUUNO4KSE
 static int dmx_source[NUM_DEMUX] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 #else
 static int dmx_source[NUM_DEMUX] = { 0, 0, 0, 0 };
@@ -95,7 +95,7 @@ static int dmx_source[NUM_DEMUX] = { 0, 0, 0, 0 };
 #if BOXMODEL_VUULTIMO4K
 #define NUM_DEMUXDEV 24
 #else
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUUNO4KSE
 #define NUM_DEMUXDEV 16
 #else
 #define NUM_DEMUXDEV 8
@@ -110,7 +110,7 @@ static const char *devname[NUM_DEMUXDEV] = {
 	"/dev/dvb/adapter0/demux5",
 	"/dev/dvb/adapter0/demux6",
 	"/dev/dvb/adapter0/demux7"
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE
 	, "/dev/dvb/adapter0/demux8"
 	, "/dev/dvb/adapter0/demux9"
 	, "/dev/dvb/adapter0/demux10"
@@ -135,7 +135,7 @@ static const char *devname[NUM_DEMUXDEV] = {
 #if BOXMODEL_VUULTIMO4K
 static bool init[NUM_DEMUXDEV] = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
 #else
-#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K
+#if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUUNO4KSE
 static bool init[NUM_DEMUXDEV] = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
 #else
 static bool init[NUM_DEMUXDEV] = { false, false, false, false, false, false, false, false };
