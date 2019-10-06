@@ -107,7 +107,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.has_button_timer = 1;
-	caps.has_HDMI = 1;
+	caps.has_HDMI = 2;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "UNO4KSE");
 	strcpy(caps.boxarch, "BCM7252S");
