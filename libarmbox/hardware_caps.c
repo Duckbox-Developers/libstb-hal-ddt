@@ -42,8 +42,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "SOLO4K");
 	strcpy(caps.boxarch, "BCM7376");
@@ -61,8 +59,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "DUO4K");
 	strcpy(caps.boxarch, "BCM7278");
@@ -80,8 +76,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "ULTIMO4K");
 	strcpy(caps.boxarch, "BCM7444S");
@@ -97,8 +91,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "ZERO4K");
 	strcpy(caps.boxarch, "BCM72604");
@@ -116,8 +108,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "UNO4KSE");
 	strcpy(caps.boxarch, "BCM7252S");
@@ -133,8 +123,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "UNO4K");
 	strcpy(caps.boxarch, "BCM7252S");
@@ -151,8 +139,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "AX-Technologies");
 	strcpy(caps.boxname, "HD51");
 	strcpy(caps.boxarch, "BCM7251S");

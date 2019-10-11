@@ -42,8 +42,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
-	caps.can_ar_14_9 = 1;
-	caps.can_ps_14_9 = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "DUO");
 	strcpy(caps.boxarch, "BCM7335");
