@@ -159,7 +159,7 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxname, "HD60");
 	strcpy(caps.boxarch, "HI3798M");
 #endif
-#if BOXMODEL_ZGEMMAH7
+#if BOXMODEL_H7
 	initialized = 1;
 	caps.has_CI = 1;
 	caps.can_cec = 1;
