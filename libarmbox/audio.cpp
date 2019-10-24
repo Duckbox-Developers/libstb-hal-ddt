@@ -308,7 +308,7 @@ int cAudio::WriteClip(unsigned char *buffer, int size)
 		hal_info("%s: clipfd not yet opened\n", __FUNCTION__);
 		return -1;
 	}
-#if BOXMODEL_HD51 || BOXMODEL_H7S
+#if BOXMODEL_HD51 || BOXMODEL_H7
 again:
 #endif
 	ret = write(clipfd, buffer, size);
