@@ -31,13 +31,8 @@ libcommon_la_SOURCES = \
 	ca_ci.cpp
 else
 if BOXTYPE_ARMBOX
-if BOXMODEL_HD60
-libcommon_la_SOURCES = \
-	ca.cpp
-else
 libcommon_la_SOURCES = \
 	ca_ci.cpp
-endif
 else
 libcommon_la_SOURCES = \
 	ca.cpp
