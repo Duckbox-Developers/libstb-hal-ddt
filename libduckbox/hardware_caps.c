@@ -129,42 +129,6 @@ hw_caps_t *get_hwcaps(void)
 			caps.display_type = HW_DISPLAY_LINE_TEXT;
 			caps.display_xres = 8;
 		}
-		else if (!strncmp(buf, "hs7110", 6)) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 1;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 0;
-		}
-		else if (!strncmp(buf, "hs7810a", 7)) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 1;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 0;
-		}
-		else if (!strncmp(buf, "hs7119", 6)) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 1;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 0;
-		}
-		else if (!strncmp(buf, "hs7819", 6)) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 1;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 0;
-		}
 		else if (!strncmp(buf, "dp7000", 6)) {
 			strcpy(caps.boxvendor, "DUCKBOX");
 			strcpy(caps.boxname, buf);
@@ -300,43 +264,6 @@ hw_caps_t *get_hwcaps(void)
 			caps.can_cec = 1;
 			caps.has_fan = 0;
 			caps.has_CI = 2;
-			caps.display_can_set_brightness = 0;
-		}
-		else if ((!strncasecmp(buf, "nbox", 4)) ||
-				(!strncasecmp(buf, "adb_box", 7))) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 0;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 1;
-			caps.has_CI = 2;
-			caps.display_can_set_brightness = 1;
-		}
-		else if ((!strncasecmp(buf, "sagemcom88", 10)) ||
-			(!strncasecmp(buf, "esi_88", 6)) ||
-			(!strncasecmp(buf, "esi88", 5)) ||
-			(!strncasecmp(buf, "dsi87", 5))) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 0;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 1;
-			caps.has_CI = 0;
-			caps.display_can_set_brightness = 1;
-		}
-		else if (!strncasecmp(buf, "dsi87", 5)) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 0;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 0;
-			caps.can_cec = 1;
-			caps.has_fan = 0;
-			caps.has_CI = 0;
 			caps.display_can_set_brightness = 0;
 		}
 		else {
