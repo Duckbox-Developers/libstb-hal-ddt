@@ -129,15 +129,6 @@ hw_caps_t *get_hwcaps(void)
 			caps.display_type = HW_DISPLAY_LINE_TEXT;
 			caps.display_xres = 8;
 		}
-		else if (!strncmp(buf, "dp7000", 6)) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 1;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 0;
-		}
 		else if (!strncmp(buf, "cuberevo-mini", 14)) {
 			strcpy(caps.boxvendor, "DUCKBOX");
 			strcpy(caps.boxname, buf);
