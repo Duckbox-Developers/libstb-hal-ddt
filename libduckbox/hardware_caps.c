@@ -246,17 +246,6 @@ hw_caps_t *get_hwcaps(void)
 			caps.display_type = HW_DISPLAY_LINE_TEXT;
 			caps.display_xres = 8;
 		}
-		else if (!strncmp(buf, "arivalink200", 12)) {
-			strcpy(caps.boxvendor, "DUCKBOX");
-			strcpy(caps.boxname, buf);
-			caps.can_shutdown = 0;
-			caps.has_HDMI = 1;
-			caps.has_SCART = 1;
-			caps.can_cec = 1;
-			caps.has_fan = 0;
-			caps.has_CI = 2;
-			caps.display_can_set_brightness = 0;
-		}
 		else {
 			strcpy(caps.boxvendor, "unknown");
 			strcpy(caps.boxname, buf);
