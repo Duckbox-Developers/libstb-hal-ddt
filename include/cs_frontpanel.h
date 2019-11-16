@@ -76,6 +76,7 @@ typedef enum {
 	FP_ICON_TV = ICON_VIDEO,
 	FP_ICON_DOWNLOAD = ICON_LINK,
 	FP_ICON_CAM1 = ICON_REC,
+	FP_ICON_TIMESHIFT = 0,
 #elif defined(BOXMODEL_FORTIS_HDBOX)
 	ICON_USB = 0x10,
 	ICON_STANDBY,
@@ -218,7 +219,6 @@ typedef enum {
 	FP_ICON_TV = 0,
 	FP_ICON_MAIL = 0,
 	FP_ICON_BT = 0,
-
 #else
 	FP_ICON_USB = 0x10,
 	FP_ICON_HD,
