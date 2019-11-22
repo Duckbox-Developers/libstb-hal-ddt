@@ -246,7 +246,7 @@ int cAudio::PrepareClipPlay(int ch, int srate, int bits, int little_endian)
 		perror("SNDCTL_DSP_CHANNELS");
 	if (ioctl(clipfd, SNDCTL_DSP_SPEED, &srate))
 		perror("SNDCTL_DSP_SPEED");
-#if !BOXMODEL_HD51 && !BOXMODEL_H7
+#if !BOXMODEL_BRE2ZE4K && !BOXMODEL_HD51 && !BOXMODEL_H7
 	if (ioctl(clipfd, SNDCTL_DSP_RESET))
 		perror("SNDCTL_DSP_RESET");
 #endif
@@ -308,7 +308,7 @@ int cAudio::WriteClip(unsigned char *buffer, int size)
 		hal_info("%s: clipfd not yet opened\n", __FUNCTION__);
 		return -1;
 	}
-#if BOXMODEL_HD51 || BOXMODEL_H7
+#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
 again:
 #endif
 	ret = write(clipfd, buffer, size);
@@ -316,7 +316,7 @@ again:
 		hal_info("%s: write error (%m)\n", __FUNCTION__);
 		return ret;
 	}
-#if BOXMODEL_HD51 || BOXMODEL_H7
+#if BOXMODEL_BRE2ZE4K || BOXMODEL_HD51 || BOXMODEL_H7
 	if (ret != size) {
 		hal_info("cAudio::%s: difference > to write (%d) != written (%d) try (%d) > reset dsp and restart write\n", __FUNCTION__, size, ret, count);
 		if (ioctl(clipfd, SNDCTL_DSP_RESET))
