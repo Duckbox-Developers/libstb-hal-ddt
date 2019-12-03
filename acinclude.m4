@@ -381,6 +381,27 @@ elif test "$BOXMODEL" = "h7"; then
 elif test "$BOXMODEL" = "raspi"; then
 	AC_DEFINE(BOXMODEL_RASPI, 1, [raspberry pi])
 fi
+
+# all vuplus BOXMODELs
+case "$BOXMODEL" in
+	vusolo4k|vuduo4k|vuultimo4k|vuuno4k|vuuno4kse|vuzero4k|vuduo)
+		AC_DEFINE(BOXMODEL_VUPLUS_ALL, 1, [vuplus_all])
+	;;
+esac
+
+# all vuplus arm BOXMODELs
+case "$BOXMODEL" in
+	vusolo4k|vuduo4k|vuultimo4k|vuuno4k|vuuno4kse|vuzero4k)
+		AC_DEFINE(BOXMODEL_VUPLUS_ARM, 1, [vuplus_arm])
+	;;
+esac
+
+# all vuplus mips BOXMODELs
+case "$BOXMODEL" in
+	vuduo)
+		AC_DEFINE(BOXMODEL_VUPLUS_MIPS, 1, [vuplus_mips])
+	;;
+esac
 ])
 
 dnl backward compatiblity
