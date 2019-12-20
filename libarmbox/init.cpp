@@ -42,6 +42,10 @@ void hal_api_init()
 		const char mode_fcc[] = { "enable" };
 		proc_put("/proc/stb/frontend/fbc/fcc", mode_fcc, strlen(mode_fcc));
 #endif
+#if BOXMODEL_VUPLUS_ALL
+		const char mode_blank[] = { "mutetilllock" };
+		proc_put("/proc/stb/video/zapmode", mode_blank, strlen(mode_fcc));
+#endif
 	}
 	initialized = true;
 	hal_info("%s end\n", __FUNCTION__);
