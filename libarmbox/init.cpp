@@ -39,12 +39,12 @@ void hal_api_init()
 		sprintf(buffer, "%x", 1);
 		proc_put("/proc/stb/fb/dst_apply", buffer, strlen(buffer));
 #if BOXMODEL_VUSOLO4K || BOXMODEL_VUDUO4K || BOXMODEL_VUULTIMO4K || BOXMODEL_VUUNO4KSE || BOXMODEL_VUUNO4K
-		const char mode_fcc[] = { "enable" };
-		proc_put("/proc/stb/frontend/fbc/fcc", mode_fcc, strlen(mode_fcc));
+		sprintf(buffer, "enable");
+		proc_put("/proc/stb/frontend/fbc/fcc", buffer, strlen(buffer));
 #endif
 #if BOXMODEL_VUPLUS_ALL
-		const char mode_blank[] = { "mutetilllock" };
-		proc_put("/proc/stb/video/zapmode", mode_blank, strlen(mode_fcc));
+		sprintf(buffer, "mutetilllock");
+		proc_put("/proc/stb/video/zapmode", buffer, strlen(buffer));
 #endif
 	}
 	initialized = true;
