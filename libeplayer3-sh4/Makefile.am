@@ -20,4 +20,3 @@ libeplayer3_sh4_la_SOURCES = \
 
 LIBEPLAYER3_LIBS = libeplayer3_sh4.la
 # -lpthread -lavformat -lavcodec -lavutil -lswresample -lm
-
