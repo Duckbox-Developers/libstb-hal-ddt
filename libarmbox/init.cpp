@@ -42,10 +42,6 @@ void hal_api_init()
 		sprintf(buffer, "%s", "enable");
 		proc_put("/proc/stb/frontend/fbc/fcc", buffer, strlen(buffer));
 #endif
-#if BOXMODEL_VUPLUS_ALL
-		sprintf(buffer, "%s", "mutetilllock");
-		proc_put("/proc/stb/video/zapmode", buffer, strlen(buffer));
-#endif
 	}
 	initialized = true;
 	hal_info("%s end\n", __FUNCTION__);
