@@ -524,7 +524,7 @@ void cPlayback::FindAllPids(int *apids, unsigned int *ac3flags, unsigned int *nu
 	int max_numpida = *numpida;
 	*numpida = 0;
 
-	if (player && player->manager && player->manager->audio)
+	if (player && player->playback && player->playback->isPlaying && player->manager && player->manager->audio)
 	{
 		char **TrackList = NULL;
 		player->manager->audio->Command(player, MANAGER_LIST, &TrackList);
