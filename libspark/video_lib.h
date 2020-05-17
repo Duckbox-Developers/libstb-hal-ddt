@@ -5,6 +5,14 @@
 #include "cs_types.h"
 #include "dmx_hal.h"
 
+#ifndef INT64_MAX
+#define INT64_MAX 0x7fffffffffffffffLL
+#endif
+
+#ifndef INT64_MIN
+#define INT64_MIN (-INT64_MAX - 1LL)
+#endif
+
 typedef struct cs_vs_format_t
 {
 	char format[16];
