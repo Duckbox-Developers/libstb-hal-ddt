@@ -40,6 +40,7 @@ typedef struct hw_caps
 	int display_can_set_brightness;
 	int display_can_deepstandby;
 	int display_has_statusline;
+	int display_has_colon;
 	int has_button_timer;
 	char boxvendor[64];
 	char boxname[64];

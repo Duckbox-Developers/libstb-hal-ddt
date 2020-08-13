@@ -40,6 +40,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	strcpy(caps.boxvendor, "VU+");
@@ -57,6 +58,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
 	strcpy(caps.boxvendor, "VU+");
@@ -74,6 +76,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
 	strcpy(caps.boxvendor, "VU+");
@@ -89,6 +92,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_deepstandby = 0;
 	caps.display_can_set_brightness = 1;
 	caps.display_has_statusline = 0;
+	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	strcpy(caps.boxvendor, "VU+");
@@ -106,6 +110,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
 	strcpy(caps.boxvendor, "VU+");
@@ -121,6 +126,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_deepstandby = 0;
 	caps.display_can_set_brightness = 1;
 	caps.display_has_statusline = 0;
+	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	strcpy(caps.boxvendor, "VU+");
@@ -132,11 +138,12 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_CI = 1;
 	caps.can_cec = 1;
 	caps.can_shutdown = 1;
-	caps.display_xres = 5;
-	caps.display_type = HW_DISPLAY_LINE_TEXT;
+	caps.display_xres = 4;
+	caps.display_type = HW_DISPLAY_LED_NUM;
 	caps.display_can_deepstandby = 0;
 	caps.display_can_set_brightness = 1;
 	caps.display_has_statusline = 0;
+	caps.display_has_colon = 1;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	strcpy(caps.boxvendor, "WWIO");
@@ -153,6 +160,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_can_deepstandby = 0;
 	caps.display_can_set_brightness = 1;
 	caps.display_has_statusline = 0;
+	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	strcpy(caps.boxvendor, "AX-Technologies");
@@ -164,11 +172,12 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_CI = 1;
 	caps.can_cec = 1;
 	caps.can_shutdown = 1;
-	caps.display_xres = 5;
-	caps.display_type = HW_DISPLAY_LINE_TEXT;
+	caps.display_xres = 4;
+	caps.display_type = HW_DISPLAY_LED_NUM;
 	caps.display_can_deepstandby = 0;
 	caps.display_can_set_brightness = 1;
 	caps.display_has_statusline = 0;
+	caps.display_has_colon = 1;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	strcpy(caps.boxvendor, "AirDigital");
