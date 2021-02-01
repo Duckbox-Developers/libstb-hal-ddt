@@ -199,7 +199,7 @@ AC_ARG_WITH(boxtype,
 			BOXTYPE="armbox"
 			BOXMODEL="$withval"
 		;;
-		vuduo)
+		vuduo|dm8000)
 			BOXTYPE="mipsbox"
 			BOXMODEL="$withval"
 		;;
@@ -214,7 +214,7 @@ AC_ARG_WITH(boxmodel,
 AS_HELP_STRING([], [valid for duckbox: ufs910, ufs912, ufs913, ufs922, atevio7500, fortis_hdbox, octagon1008, cuberevo, cuberevo_mini, cuberevo_mini2, cuberevo_250hd, cuberevo_2000hd, cuberevo_3000hd, ipbox9900, ipbox99, ipbox55, tf7700])
 AS_HELP_STRING([], [valid for spark: spark, spark7162])
 AS_HELP_STRING([], [valid for armbox: bre2ze4k, hd51, hd60, hd61, vusolo4k, vuduo4k, vuduo4kse, vuultimo4k, vuzero4k, vuuno4kse, vuuno4k, h7, osmio4k, osmio4kplus])
-AS_HELP_STRING([], [valid for mipsbox: vuduo]),
+AS_HELP_STRING([], [valid for mipsbox: vuduo, dm8000]),
 	[case "${withval}" in
 		ufs910|ufs912|ufs913|ufs922|atevio7500|fortis_hdbox|octagon1008|cuberevo|cuberevo_mini|cuberevo_mini2|cuberevo_250hd|cuberevo_2000hd|cuberevo_3000hd|ipbox9900|ipbox99|ipbox55|tf7700)
 			if test "$BOXTYPE" = "duckbox"; then
@@ -237,7 +237,7 @@ AS_HELP_STRING([], [valid for mipsbox: vuduo]),
 				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
 			fi
 		;;
-		vuduo)
+		vuduo|dm8000)
 			if test "$BOXTYPE" = "mipsbox"; then
 				BOXMODEL="$withval"
 			else
@@ -300,6 +300,7 @@ AM_CONDITIONAL(BOXMODEL_VUZERO4K, test "$BOXMODEL" = "vuzero4k")
 AM_CONDITIONAL(BOXMODEL_VUUNO4KSE, test "$BOXMODEL" = "vuuno4kse")
 AM_CONDITIONAL(BOXMODEL_VUUNO4K, test "$BOXMODEL" = "vuuno4k")
 AM_CONDITIONAL(BOXMODEL_VUDUO, test "$BOXMODEL" = "vuduo")
+AM_CONDITIONAL(BOXMODEL_DM8000, test "$BOXMODEL" = "dm8000")
 AM_CONDITIONAL(BOXMODEL_H7, test "$BOXMODEL" = "h7")
 AM_CONDITIONAL(BOXMODEL_OSMIO4K, test "$BOXMODEL" = "osmio4k")
 AM_CONDITIONAL(BOXMODEL_OSMIO4KPLUS, test "$BOXMODEL" = "osmio4kplus")
@@ -391,6 +392,8 @@ elif test "$BOXMODEL" = "vuuno4k"; then
 	AC_DEFINE(BOXMODEL_VUUNO4K, 1, [vuuno4k])
 elif test "$BOXMODEL" = "vuduo"; then
 	AC_DEFINE(BOXMODEL_VUDUO, 1, [vuduo])
+elif test "$BOXMODEL" = "dm8000"; then
+	AC_DEFINE(BOXMODEL_DM8000, 1, [dm8000])
 elif test "$BOXMODEL" = "h7"; then
 	AC_DEFINE(BOXMODEL_H7, 1, [h7])
 elif test "$BOXMODEL" = "osmio4k"; then
