@@ -150,9 +150,9 @@ dnl end workaround
 
 AC_DEFUN([TUXBOX_BOXTYPE], [
 AC_ARG_WITH(boxtype,
-	AS_HELP_STRING([--with-boxtype], [valid values: tripledragon, spark, azbox, generic, armbox, duckbox, spark7162, mipsbox]),
+	AS_HELP_STRING([--with-boxtype], [valid values: spark, generic, armbox, duckbox, spark7162, mipsbox]),
 	[case "${withval}" in
-		tripledragon|azbox|generic|armbox)
+		generic|armbox)
 			BOXTYPE="$withval"
 		;;
 		spark|spark7162)
