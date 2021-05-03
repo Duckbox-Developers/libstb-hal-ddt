@@ -61,6 +61,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
+	caps.has_HDMI_input = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "DUO4K");
 	strcpy(caps.boxarch, "BCM7278");
@@ -79,6 +80,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
+	caps.has_HDMI_input = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "DUO4KSE");
 	strcpy(caps.boxarch, "BCM7444S");
@@ -97,6 +99,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
+	caps.has_HDMI_input = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "ULTIMO4K");
 	strcpy(caps.boxarch, "BCM7444S");
@@ -131,6 +134,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
+	caps.has_HDMI_input = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "UNO4KSE");
 	strcpy(caps.boxarch, "BCM7252S");
