@@ -42,6 +42,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
+//	caps.has_SCART_input = 1;
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "DUO");
 	strcpy(caps.boxarch, "BCM7335");
@@ -62,6 +63,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;			// wrong (has only DVI), only for testing
 	caps.has_SCART = 2;
+//	caps.has_SCART_input = 1;
 //	caps.has_DVI = 1;
 	strcpy(caps.boxvendor, "DM");
 	strcpy(caps.boxname, "8000HD");
