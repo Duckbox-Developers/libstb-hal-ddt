@@ -61,7 +61,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 1;
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
-	caps.has_HDMI = 1;			// wrong (has only DVI), only for testing
+	caps.has_HDMI = 1;          // wrong (has only DVI), only for testing
 	caps.has_SCART = 2;
 //	caps.has_SCART_input = 1;
 //	caps.has_DVI = 1;

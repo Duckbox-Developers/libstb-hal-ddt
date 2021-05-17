@@ -389,7 +389,7 @@ static inline int check_marker(void *logctx __attribute__((unused)), GetBitConte
  * @return 0 on success, AVERROR_INVALIDDATA if the buffer_size would overflow.
  */
 static inline int init_get_bits(GetBitContext *s, const uint8_t *buffer,
-                                int bit_size)
+    int bit_size)
 {
 	int buffer_size;
 	int ret = 0;
@@ -421,7 +421,7 @@ static inline int init_get_bits(GetBitContext *s, const uint8_t *buffer,
  * @return 0 on success, AVERROR_INVALIDDATA if the buffer_size would overflow.
  */
 static inline int init_get_bits8(GetBitContext *s, const uint8_t *buffer,
-                                 int byte_size)
+    int byte_size)
 {
 	if (byte_size > INT_MAX / 8 || byte_size < 0)
 		byte_size = -1;

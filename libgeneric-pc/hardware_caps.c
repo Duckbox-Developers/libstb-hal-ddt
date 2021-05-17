@@ -28,7 +28,7 @@ hw_caps_t *get_hwcaps(void)
 	memset(&caps, 0, sizeof(hw_caps_t));
 
 	initialized = 1;
-	caps.can_shutdown = 1;	/* for testing */
+	caps.can_shutdown = 1;  /* for testing */
 	caps.display_type = HW_DISPLAY_LINE_TEXT;
 	caps.has_HDMI = 1;
 	caps.display_xres = 8;
@@ -36,9 +36,10 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 0;
 	strcpy(caps.boxvendor, "Generic");
 	strcpy(caps.boxname, "PC");
-	if (! uname(&u)){
+	if (! uname(&u))
+	{
 		strncpy(caps.boxarch, u.machine, sizeof(caps.boxarch));
-		caps.boxarch[sizeof(caps.boxarch)-1] = '\0';
+		caps.boxarch[sizeof(caps.boxarch) - 1] = '\0';
 	}
 	else
 		fprintf(stderr, "%s: uname() failed: %m\n", __func__);

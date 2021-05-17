@@ -38,22 +38,22 @@ extern "C" {
 #define AV_CODEC_ID_INJECTPCM AV_CODEC_ID_PCM_S16LE
 
 /* wrapper */
-#if (LIBAVFORMAT_VERSION_INT > AV_VERSION_INT( 57,25,100 ))
-static AVCodecParameters __attribute__ ((unused)) *get_codecpar(AVStream *stream)
+#if (LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100))
+static AVCodecParameters __attribute__((unused)) *get_codecpar(AVStream *stream)
 {
 	return stream->codecpar;
 }
 #else
-static AVCodecContext __attribute__ ((unused)) *get_codecpar(AVStream *stream)
+static AVCodecContext __attribute__((unused)) *get_codecpar(AVStream *stream)
 {
 	return stream->codec;
 }
 #endif
 
 #if (LIBAVCODEC_VERSION_MAJOR > 55)
-#define	av_free_packet av_packet_unref
+#define av_free_packet av_packet_unref
 #else
-#define av_packet_unref	av_free_packet
+#define av_packet_unref av_free_packet
 #endif
 /* end wrapper */
 
@@ -71,7 +71,11 @@ class Writer
 		static audio_encoding_t GetAudioEncoding(enum AVCodecID id);
 		static Writer *GetWriter(enum AVCodecID id, enum AVMediaType codec_type, int track_type);
 
-		virtual void Init(int _fd, AVStream * /*stream*/, Player *_player ) { fd = _fd; player = _player; }
+		virtual void Init(int _fd, AVStream * /*stream*/, Player *_player)
+		{
+			fd = _fd;
+			player = _player;
+		}
 		virtual bool Write(AVPacket *packet, int64_t pts);
 };
 #endif

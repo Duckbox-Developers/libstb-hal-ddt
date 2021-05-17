@@ -944,7 +944,7 @@ int LinuxDvbSwitch(Context_t *context, char *type)
 
 static int Write(void *_context, void *_out)
 {
-	Context_t          *context  = (Context_t *) _context;
+	Context_t *context  = (Context_t *) _context;
 	AudioVideoOut_t    *out      = (AudioVideoOut_t *) _out;
 	int                ret       = cERR_LINUXDVB_NO_ERROR;
 	int                res       = 0;
@@ -963,7 +963,7 @@ static int Write(void *_context, void *_out)
 	audio = !strcmp("audio", out->type);
 
 	linuxdvb_printf(20, "DataLength=%u PrivateLength=%u Pts=%llu FrameRate=%f\n",
-	                out->len, out->extralen, out->pts, out->frameRate);
+	    out->len, out->extralen, out->pts, out->frameRate);
 	linuxdvb_printf(20, "v%d a%d\n", video, audio);
 
 	if (video)
