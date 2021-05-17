@@ -54,7 +54,7 @@ Input::Input()
 	seek_avts_abs = INT64_MIN;
 	seek_avts_rel = 0;
 	abortPlayback = false;
-#if (LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100))
+#if LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100)
 	for (int n = 0; n < EPLAYER_MAX_CODECS; n++)
 		codecs[n].codec = NULL;
 #endif
@@ -117,7 +117,7 @@ static void logprintf(const char *format, ...)
 
 AVCodecContext *Input::GetCodecContext(unsigned int index)
 {
-#if (LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100))
+#if LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100)
 	if (codecs[index].codec)
 	{
 		return codecs[index].codec;
@@ -422,7 +422,7 @@ bool Input::ReadSubtitle(const char *filename, const char *format, int pid)
 
 	AVCodecContext *c = NULL;
 	AVCodec *codec = NULL;
-#if (LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(57,25,101))
+#if LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(57,25,101)
 	c = subavfc->streams[0]->codec;
 #else
 	c = avcodec_alloc_context3(codec);
@@ -462,7 +462,7 @@ bool Input::ReadSubtitle(const char *filename, const char *format, int pid)
 		av_packet_unref(&packet);
 	}
 	avcodec_close(c);
-#if (LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100))
+#if LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100)
 	avcodec_free_context(&c);
 #endif
 	avformat_close_input(&subavfc);
@@ -563,8 +563,8 @@ again:
 	avfc->flags = AVFMT_FLAG_GENPTS;
 	if (player->noprobe)
 	{
-#if (LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(55, 43, 100)) || \
-    (LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57, 25, 0))
+#if LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(55, 43, 100) || \
+    LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57, 25, 0)
 		avfc->max_analyze_duration = 1;
 #else
 		avfc->max_analyze_duration2 = 1;
@@ -790,7 +790,7 @@ bool Input::Stop()
 		OpenThreads::ScopedLock<OpenThreads::Mutex> lock(mutex);
 		for (unsigned int i = 0; i < avfc->nb_streams; i++)
 		{
-#if (LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100))
+#if LIBAVFORMAT_VERSION_INT > AV_VERSION_INT(57,25,100)
 			if (codecs[i].codec)
 				avcodec_free_context(&codecs[i].codec);
 #else

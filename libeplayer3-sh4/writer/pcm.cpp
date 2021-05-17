@@ -267,7 +267,7 @@ bool WriterPCM::Write(AVPacket *packet, int64_t pts)
 			decoded_frame = NULL;
 		}
 
-#if (LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(57,25,101))
+#if LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(57,25,101)
 		AVCodec *codec = avcodec_find_decoder(c->codec_id);
 		if (!codec)
 		{
