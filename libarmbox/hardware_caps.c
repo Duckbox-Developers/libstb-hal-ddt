@@ -203,7 +203,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	strcpy(caps.boxvendor, "AirDigital");
-	strcpy(caps.boxname, "Zgemma H7C/S");
+	strcpy(caps.boxname, "Zgemma H7");
 	strcpy(caps.boxarch, "BCM7251S");
 #endif
 	return &caps;
