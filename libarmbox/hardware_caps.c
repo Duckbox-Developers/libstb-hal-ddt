@@ -185,7 +185,7 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
-	strcpy(caps.boxvendor, "AX-Technologies");
+	strcpy(caps.boxvendor, "AX");
 	strcpy(caps.boxname, "HD51");
 	strcpy(caps.boxarch, "BCM7251S");
 #endif
