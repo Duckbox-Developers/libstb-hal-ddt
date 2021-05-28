@@ -26,8 +26,6 @@ void hal_api_init()
 	hal_info("%s begin, initialized=%d, debug=0x%02x\n", __FUNCTION__, (int)initialized, debuglevel);
 	if (!initialized)
 	{
-		cCpuFreqManager f;
-		f.SetCpuFreq(0);    /* CPUFREQ == 0 is the trigger for leaving standby */
 		char buffer[64];
 		sprintf(buffer, "%x", 0);
 		proc_put("/proc/stb/fb/dst_top", buffer, strlen(buffer));

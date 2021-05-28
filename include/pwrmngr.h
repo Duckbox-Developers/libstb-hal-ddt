@@ -18,19 +18,6 @@
 #ifndef __PWRMNGR_H__
 #define __PWRMNGR_H__
 
-class cCpuFreqManager
-{
-	public:
-		cCpuFreqManager(void);
-		void Up(void);
-		void Down(void);
-		void Reset(void);
-
-		bool SetCpuFreq(unsigned long CpuFreq);
-		bool SetDelta(unsigned long Delta);
-		unsigned long GetCpuFreq(void);
-		unsigned long GetDelta(void);
-};
 
 class cPowerManager
 {

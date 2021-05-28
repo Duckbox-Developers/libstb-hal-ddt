@@ -307,8 +307,6 @@ void hal_api_init()
 	hal_info("%s begin, initialized=%d, debug=0x%02x\n", __FUNCTION__, (int)initialized, debuglevel);
 	if (!initialized)
 	{
-		cCpuFreqManager f;
-		f.SetCpuFreq(0);    /* CPUFREQ == 0 is the trigger for leaving standby */
 		create_input_devices();
 		start_inmux_thread();
 
