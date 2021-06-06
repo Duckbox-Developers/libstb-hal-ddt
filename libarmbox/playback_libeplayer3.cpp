@@ -859,7 +859,7 @@ AVFormatContext *cPlayback::GetAVFormatContext()
 void cPlayback::ReleaseAVFormatContext()
 {
 	avft->streams = NULL;
-	avft->nb_streams = NULL;
+	avft->nb_streams = 0;
 }
 
 #if 0
