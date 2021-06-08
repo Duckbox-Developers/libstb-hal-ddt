@@ -728,11 +728,13 @@ SlotIt cCA::FindFreeSlot(u64 TP, u8 source, u16 SID, ca_map_t camap, u8 scramble
 		if ((*it)->bsids.size())
 		{
 			for (i = 0; i < (*it)->bsids.size(); i++)
+			{
 				if ((*it)->bsids[i] == SID)
 				{
 					tmpSidBlackListed = true;
 					break;
 				}
+			}
 			if (i == (*it)->bsids.size())
 			{
 				(*it)->SidBlackListed = false;
