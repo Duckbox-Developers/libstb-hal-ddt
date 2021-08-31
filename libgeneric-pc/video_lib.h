@@ -193,6 +193,8 @@ class cVideo : public OpenThreads::Thread
 		cVideo(int mode, void *, void *, unsigned int unit = 0);
 		~cVideo(void);
 
+		void setAVInput(int val) { return; };
+
 		void *GetTVEnc()
 		{
 			return NULL;
