@@ -122,7 +122,11 @@ AVCodecContext *Input::GetCodecContext(unsigned int index)
 	{
 		return codecs[index].codec;
 	}
+#if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(59,0,100)
 	AVCodec *codec = avcodec_find_decoder(avfc->streams[index]->codecpar->codec_id);
+#else
+	const AVCodec *codec = avcodec_find_decoder(avfc->streams[index]->codecpar->codec_id);
+#endif
 	codecs[index].codec = avcodec_alloc_context3(codec);
 	if (!codecs[index].codec)
 	{
@@ -421,7 +425,11 @@ bool Input::ReadSubtitle(const char *filename, const char *format, int pid)
 	}
 
 	AVCodecContext *c = NULL;
+#if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(59,0,100)
 	AVCodec *codec = NULL;
+#else
+	const AVCodec *codec = NULL;
+#endif
 #if LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(57,25,101)
 	c = subavfc->streams[0]->codec;
 #else
@@ -559,7 +567,14 @@ again:
 		return false;
 	}
 
+#if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(59,0,100)
 	avfc->iformat->flags |= AVFMT_SEEK_TO_PTS;
+#else
+	if (!(avfc->iformat->flags & AVFMT_SEEK_TO_PTS)) {
+		printf("[input.cpp] - AVFMT_SEEK_TO_PTS not available - FIXME, FFMPEG 4.5 has problems with some VOB/MPG...\n");
+		return false; // FIXME, FFMPEG 4.5 has problems with some VOB/MPG...
+	}
+#endif
 	avfc->flags = AVFMT_FLAG_GENPTS;
 	if (player->noprobe)
 	{

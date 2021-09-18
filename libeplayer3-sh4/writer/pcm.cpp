@@ -268,7 +268,11 @@ bool WriterPCM::Write(AVPacket *packet, int64_t pts)
 		}
 
 #if LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(57,25,101)
+#if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(59,0,100)
 		AVCodec *codec = avcodec_find_decoder(c->codec_id);
+#else
+		const AVCodec *codec = avcodec_find_decoder(c->codec_id);
+#endif
 		if (!codec)
 		{
 			fprintf(stderr, "%s %d: avcodec_find_decoder(%llx)\n", __func__, __LINE__, (unsigned long long) c->codec_id);
