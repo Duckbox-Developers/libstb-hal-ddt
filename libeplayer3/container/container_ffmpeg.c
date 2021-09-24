@@ -182,9 +182,7 @@ static int32_t Write(Write_FN WriteFun, Context_t *context, void *privateData, i
 
 #include "buff_ffmpeg.c"
 #include "wrapped_ffmpeg.c"
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(56, 34, 100)
 #include "mpeg4p2_ffmpeg.c"
-#endif
 
 #ifdef HAVE_FLV2MPEG4_CONVERTER
 #include "flv2mpeg4_ffmpeg.c"
@@ -565,9 +563,8 @@ static void FFMPEGThread(Context_t *context)
 	uint64_t out_channel_layout = AV_CH_LAYOUT_STEREO;
 	uint32_t cAVIdx = 0;
 
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(56, 34, 100)
 	Mpeg4P2Context *mpeg4p2_context = mpeg4p2_context_open();
-#endif
+
 #ifdef HAVE_FLV2MPEG4_CONVERTER
 	Flv2Mpeg4Context flv2mpeg4_context;
 	memset(&flv2mpeg4_context, 0, sizeof(Flv2Mpeg4Context));
@@ -734,9 +731,9 @@ static void FFMPEGThread(Context_t *context)
 					break;
 				}
 			}
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(56, 34, 100)
+
 			mpeg4p2_context_reset(mpeg4p2_context);
-#endif
+
 #ifdef HAVE_FLV2MPEG4_CONVERTER
 			flv2mpeg4_context_reset(&flv2mpeg4_context);
 #endif
@@ -823,7 +820,6 @@ static void FFMPEGThread(Context_t *context)
 
 			if (videoTrack && (videoTrack->AVIdx == (int)cAVIdx) && (videoTrack->Id == pid))
 			{
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(56, 34, 100)
 				AVCodecContext *codec_context = videoTrack->avCodecCtx;
 				if (codec_context && codec_context->codec_id == AV_CODEC_ID_MPEG4 && NULL != mpeg4p2_context)
 				{
@@ -831,7 +827,6 @@ static void FFMPEGThread(Context_t *context)
 					update_max_injected_pts(latestPts);
 				}
 				else
-#endif
 #ifdef HAVE_FLV2MPEG4_CONVERTER
 					if (get_codecpar(avContextTab[cAVIdx]->streams[packet.stream_index])->codec_id == AV_CODEC_ID_FLV1 &&
 					    0 == memcmp(videoTrack->Encoding, "V_MPEG4", 7))
@@ -1344,9 +1339,7 @@ static void FFMPEGThread(Context_t *context)
 		wrapped_frame_free(&decoded_frame);
 	}
 
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(56, 34, 100)
 	mpeg4p2_context_close(mpeg4p2_context);
-#endif
 
 	hasPlayThreadStarted = 0;
 	context->playback->isPlaying = 0;
