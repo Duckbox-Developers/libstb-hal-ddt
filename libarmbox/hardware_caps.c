@@ -43,12 +43,13 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_xres = 480;
 	caps.display_yres = 320;
 	caps.display_type = HW_DISPLAY_GFX;
-	caps.display_can_deepstandby = 0;   // 0 because we use graphlcd/lcd4linux
-	caps.display_can_set_brightness = 0;    // 0 because we use graphlcd/lcd4linux
-	caps.display_has_statusline = 0;    // 0 because we use graphlcd/lcd4linux
+	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
+	caps.pip_devs = 2;			// has only 3 real usable video devices
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "SOLO4K");
 	strcpy(caps.boxarch, "BCM7376");
@@ -61,9 +62,9 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_xres = 480;
 	caps.display_yres = 320;
 	caps.display_type = HW_DISPLAY_GFX;
-	caps.display_can_deepstandby = 0;   // 0 because we use graphlcd/lcd4linux
-	caps.display_can_set_brightness = 0;    // 0 because we use graphlcd/lcd4linux
-	caps.display_has_statusline = 0;    // 0 because we use graphlcd/lcd4linux
+	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
@@ -80,9 +81,9 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_xres = 480;
 	caps.display_yres = 320;
 	caps.display_type = HW_DISPLAY_GFX;
-	caps.display_can_deepstandby = 0;   // 0 because we use graphlcd/lcd4linux
-	caps.display_can_set_brightness = 0;    // 0 because we use graphlcd/lcd4linux
-	caps.display_has_statusline = 0;    // 0 because we use graphlcd/lcd4linux
+	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
@@ -99,9 +100,9 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_xres = 800;
 	caps.display_yres = 480;
 	caps.display_type = HW_DISPLAY_GFX;
-	caps.display_can_deepstandby = 0;   // 0 because we use graphlcd/lcd4linux
-	caps.display_can_set_brightness = 0;    // 0 because we use graphlcd/lcd4linux
-	caps.display_has_statusline = 0;    // 0 because we use graphlcd/lcd4linux
+	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
@@ -134,9 +135,9 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_xres = 400;
 	caps.display_yres = 240;
 	caps.display_type = HW_DISPLAY_GFX;
-	caps.display_can_deepstandby = 0;   // 0 because we use graphlcd/lcd4linux
-	caps.display_can_set_brightness = 0;    // 0 because we use graphlcd/lcd4linux
-	caps.display_has_statusline = 0;    // 0 because we use graphlcd/lcd4linux
+	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 2;
