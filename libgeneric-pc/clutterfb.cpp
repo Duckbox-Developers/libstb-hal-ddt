@@ -391,9 +391,6 @@ void GLFbPC::render()
 						break;
 					case DISPLAY_AR_MODE_LETTERBOX:
 						break;
-					case DISPLAY_AR_MODE_PANSCAN2:
-						zoom = av_q2d(a149) / av_q2d(mOA);
-						break;
 					case DISPLAY_AR_MODE_NONE:
 						xzoom = av_q2d(mOA) / av_q2d(mVA);
 						zoom = av_q2d(mVA) / av_q2d(mOA);
@@ -408,12 +405,6 @@ void GLFbPC::render()
 				{
 					case DISPLAY_AR_MODE_LETTERBOX:
 						break;
-					case DISPLAY_AR_MODE_PANSCAN2:
-						if (av_cmp_q(a149, mOA) < 0)
-						{
-							zoom = av_q2d(mVA) * av_q2d(a149) / av_q2d(mOA);
-							break;
-						}
 					// fall through
 					/* fallthrough for output format 14:9 */
 					case DISPLAY_AR_MODE_PANSCAN:
