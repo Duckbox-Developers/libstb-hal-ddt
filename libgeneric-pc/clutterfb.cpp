@@ -405,8 +405,6 @@ void GLFbPC::render()
 				{
 					case DISPLAY_AR_MODE_LETTERBOX:
 						break;
-					// fall through
-					/* fallthrough for output format 14:9 */
 					case DISPLAY_AR_MODE_PANSCAN:
 						zoom = av_q2d(mOA) / av_q2d(mVA);
 						break;

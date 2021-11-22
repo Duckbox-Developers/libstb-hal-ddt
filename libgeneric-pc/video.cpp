@@ -136,8 +136,6 @@ int cVideo::getAspectRatio(void)
 		; /* ret = 0: N/A */
 	else if (ar < 140)  /* 4:3 */
 		ret = 1;
-	else if (ar < 165)  /* 14:9 */
-		ret = 2;
 	else if (ar < 200)  /* 16:9 */
 		ret = 3;
 	else
