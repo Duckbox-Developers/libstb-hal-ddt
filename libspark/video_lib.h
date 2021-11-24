@@ -48,16 +48,6 @@ typedef enum
 
 typedef enum
 {
-	VIDEO_SD = 0,
-	VIDEO_HD,
-	VIDEO_120x60i,
-	VIDEO_320x240i,
-	VIDEO_1440x800i,
-	VIDEO_360x288i
-} VIDEO_DEFINITION;
-
-typedef enum
-{
 	VIDEO_FRAME_RATE_23_976 = 0,
 	VIDEO_FRAME_RATE_24,
 	VIDEO_FRAME_RATE_25,
@@ -83,13 +73,6 @@ typedef enum
 	DISPLAY_AR_MODE_LETTERBOX,
 	DISPLAY_AR_MODE_NONE
 } DISPLAY_AR_MODE;
-
-typedef enum
-{
-	VIDEO_DB_DR_NEITHER = 0,
-	VIDEO_DB_ON,
-	VIDEO_DB_DR_BOTH
-} VIDEO_DB_DR;
 
 typedef enum
 {
@@ -153,11 +136,9 @@ class cVideo
 		int scartvoltage;
 
 		VIDEO_FORMAT StreamType;
-		VIDEO_DEFINITION VideoDefinition;
 		DISPLAY_AR DisplayAR;
 		VIDEO_PLAY_MODE SyncMode;
 		DISPLAY_AR_MODE ARMode;
-		VIDEO_DB_DR eDbDr;
 		DISPLAY_AR PictureAR;
 		VIDEO_FRAME_RATE FrameRate;
 		int video_standby;
@@ -243,10 +224,7 @@ class cVideo
 		void VideoParamWatchdog(void);
 		void setContrast(int val);
 		void SetVideoMode(analog_mode_t mode);
-		void SetDBDR(int)
-		{
-			return;
-		};
+
 		void SetAudioHandle(void *)
 		{
 			return;
