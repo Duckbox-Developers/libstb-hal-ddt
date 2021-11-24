@@ -25,19 +25,6 @@ typedef enum
 
 typedef enum
 {
-	COLORFORMAT_RGB = 0x10, // keep compatible with analog_mode_t
-	COLORFORMAT_YUV,
-	COLORFORMAT_CVBS,
-	COLORFORMAT_SVIDEO,
-	COLORFORMAT_HDMI_AUTO,
-	COLORFORMAT_HDMI_RGB,
-	COLORFORMAT_HDMI_YCBCR444,
-	COLORFORMAT_HDMI_YCBCR422,
-	COLORFORMAT_HDMI_YCBCR420
-} COLOR_FORMAT;
-
-typedef enum
-{
 	VIDEO_FORMAT_MPEG2 = 0,
 	VIDEO_FORMAT_MPEG4_H264,
 	VIDEO_FORMAT_VC1,
@@ -47,16 +34,6 @@ typedef enum
 	VIDEO_FORMAT_MPEG4_H265,
 	VIDEO_FORMAT_AVS = 16
 } VIDEO_FORMAT;
-
-typedef enum
-{
-	VIDEO_SD = 0,
-	VIDEO_HD,
-	VIDEO_120x60i,
-	VIDEO_320x240i,
-	VIDEO_1440x800i,
-	VIDEO_360x288i
-} VIDEO_DEFINITION;
 
 typedef enum
 {
@@ -85,13 +62,6 @@ typedef enum
 	DISPLAY_AR_MODE_LETTERBOX,
 	DISPLAY_AR_MODE_NONE
 } DISPLAY_AR_MODE;
-
-typedef enum
-{
-	VIDEO_DB_DR_NEITHER = 0,
-	VIDEO_DB_ON,
-	VIDEO_DB_DR_BOTH
-} VIDEO_DB_DR;
 
 typedef enum
 {
@@ -180,11 +150,9 @@ class cVideo
 		int /*vidOutFmt_t*/ outputformat;
 
 		VIDEO_FORMAT StreamType;
-		VIDEO_DEFINITION VideoDefinition;
 		DISPLAY_AR DisplayAR;
 		VIDEO_PLAY_MODE SyncMode;
 		DISPLAY_AR_MODE ARMode;
-		VIDEO_DB_DR eDbDr;
 		DISPLAY_AR PictureAR;
 		VIDEO_FRAME_RATE FrameRate;
 		int video_standby;
@@ -272,10 +240,7 @@ class cVideo
 		void setContrast(int val);
 		void SetVideoMode(analog_mode_t mode);
 		void QuadPiP(bool active = false, int _x = 0, int _y = 0, int _w = 360, int _h = 288);
-		void SetDBDR(int)
-		{
-			return;
-		};
+
 		void SetAudioHandle(void *)
 		{
 			return;
@@ -301,7 +266,6 @@ class cVideo
 			return 0;
 		};
 		void SetDemux(cDemux *dmx);
-		void SetColorFormat(COLOR_FORMAT color_format);
 		bool GetScreenImage(unsigned char*&data, int &xres, int &yres, bool get_video = true, bool get_osd = false, bool scale_to_video = false);
 };
 
