@@ -23,6 +23,15 @@ typedef enum
 	ANALOG_SCART_MASK = 0x10
 } analog_mode_t;
 
+
+typedef enum
+{
+	HDMI_MODE_AUTO,
+	HDMI_MODE_BT2020NCL,
+	HDMI_MODE_BT2020CL,
+	HDMI_MODE_BT709
+}HDMI_MODE;
+
 typedef enum
 {
 	VIDEO_FORMAT_MPEG2 = 0,
@@ -266,6 +275,7 @@ class cVideo
 			return 0;
 		};
 		void SetDemux(cDemux *dmx);
+		void SetHdmiMode(HDMI_MODE hdmi_mode);
 		bool GetScreenImage(unsigned char*&data, int &xres, int &yres, bool get_video = true, bool get_osd = false, bool scale_to_video = false);
 };
 
