@@ -1181,7 +1181,7 @@ void cVideo::SetHdmiMode(HDMI_MODE hdmi_mode)
 			p = "bt2020ncl";
 			break;
 		case HDMI_MODE_BT2020CL:
-			p = "bt202cl";
+			p = "bt2020cl";
 			break;
 		case HDMI_MODE_BT709:
 			p = "bt709";
