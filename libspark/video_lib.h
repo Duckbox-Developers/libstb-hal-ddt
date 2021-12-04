@@ -229,10 +229,6 @@ class cVideo
 		{
 			return;
 		};
-		void SetAutoModes(int [VIDEO_STD_MAX])
-		{
-			return;
-		};
 		int  OpenVBI(int)
 		{
 			return 0;
