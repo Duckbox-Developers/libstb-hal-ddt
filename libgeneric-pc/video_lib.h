@@ -264,10 +264,6 @@ class cVideo : public OpenThreads::Thread
 		{
 			return;
 		};
-		void SetAutoModes(int [VIDEO_STD_MAX])
-		{
-			return;
-		};
 		int  OpenVBI(int)
 		{
 			return 0;
