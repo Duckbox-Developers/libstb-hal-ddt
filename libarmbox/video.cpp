@@ -1169,6 +1169,26 @@ void cVideo::SetControl(int control, int value)
 	}
 }
 
+#if BOXMODEL_VUPLUS_ARM
+void cVideo::SetHDMIColorimetry(HDMI_COLORIMETRY hdmi_colorimetry)
+{
+	const char *p = NULL;
+	switch (hdmi_colorimetry)
+	{
+		case HDMI_COLORIMETRY_AUTO:
+			p = "Edit(Auto)";
+			break;
+		case HDMI_COLORIMETRY_BT709:
+			p = "Itu_R_BT_709";
+			break;
+		case HDMI_COLORIMETRY_BT470:
+			p = "Itu_R_BT_470_2_BG";
+			break;
+	}
+	if (p)
+		proc_put("/proc/stb/video/hdmi_colorspace", p, strlen(p));
+}
+#else
 void cVideo::SetHDMIColorimetry(HDMI_COLORIMETRY hdmi_colorimetry)
 {
 	const char *p = NULL;
@@ -1190,6 +1210,7 @@ void cVideo::SetHDMIColorimetry(HDMI_COLORIMETRY hdmi_colorimetry)
 	if (p)
 		proc_put("/proc/stb/video/hdmi_colorimetry", p, strlen(p));
 }
+#endif
 
 bool getvideo2(unsigned char *video, int xres, int yres)
 {

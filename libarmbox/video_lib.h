@@ -24,6 +24,14 @@ typedef enum
 } analog_mode_t;
 
 
+#if BOXMODEL_VUPLUS_ARM
+typedef enum
+{
+	HDMI_COLORIMETRY_AUTO,
+	HDMI_COLORIMETRY_BT709,
+	HDMI_COLORIMETRY_BT470
+} HDMI_COLORIMETRY;
+#else
 typedef enum
 {
 	HDMI_COLORIMETRY_AUTO,
@@ -31,6 +39,7 @@ typedef enum
 	HDMI_COLORIMETRY_BT2020CL,
 	HDMI_COLORIMETRY_BT709
 } HDMI_COLORIMETRY;
+#endif
 
 typedef enum
 {
