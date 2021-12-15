@@ -39,7 +39,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_SCART = 1;
 //	caps.has_SCART_input = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -57,7 +56,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_SCART = 1;
 //	caps.has_SCART_input = 1;
 	caps.can_cec = 1;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -75,7 +73,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_SCART = 1;
 //	caps.has_SCART_input = 1;
 	caps.can_cec = 1;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -92,7 +89,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 1;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -110,7 +106,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_SCART = 1;
 //	caps.has_SCART_input = 1;
 	caps.can_cec = 1;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -128,7 +123,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_SCART = 1;
 //	caps.has_SCART_input = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -145,7 +139,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -165,7 +158,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 1;
 	caps.has_CI = 2;
 #endif
 #if BOXMODEL_CUBEREVO_MINI
@@ -180,7 +172,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 #endif
 #if BOXMODEL_CUBEREVO_MINI2
@@ -192,7 +183,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 1;
 	caps.has_CI = 2;
 	caps.display_can_set_brightness = 1;
 	caps.display_can_deepstandby = 0;
@@ -212,7 +202,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 1;
 	caps.has_CI = 0;
 #endif
 #if BOXMODEL_CUBEREVO_2000HD
@@ -227,7 +216,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 0;
 	caps.has_CI = 0;
 #endif
 #if BOXMODEL_CUBEREVO_3000HD
@@ -242,7 +230,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 1;
 	caps.has_CI = 2;
 #endif
 #if BOXMODEL_IPBOX9900
@@ -257,7 +244,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 2;
 	caps.can_cec = 0;
-	caps.has_fan = 1;
 	caps.has_CI = 2;
 #endif
 #if BOXMODEL_IPBOX99
@@ -272,7 +258,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 1;
 	caps.has_CI = 0;
 #endif
 #if BOXMODEL_IPBOX55
@@ -287,7 +272,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 0;
 	caps.has_CI = 0;
 #endif
 #if BOXMODEL_TF7700
@@ -302,7 +286,6 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
 	caps.can_cec = 0;
-	caps.has_fan = 0;
 	caps.has_CI = 2;
 #endif
 	return &caps;

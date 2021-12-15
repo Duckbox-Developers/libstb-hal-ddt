@@ -55,7 +55,6 @@ hw_caps_t *get_hwcaps(void)
 #endif
 #if BOXMODEL_DM8000
 	initialized = 1;
-	caps.has_fan = 1;
 	caps.has_CI = 4;
 	caps.can_cec = 0;
 	caps.can_shutdown = 1;
