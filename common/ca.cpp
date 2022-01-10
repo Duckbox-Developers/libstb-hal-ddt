@@ -103,8 +103,3 @@ void cCA::Ready(bool p)
 {
 	hal_debug("%s param:%d\n", __FUNCTION__, (int)p);
 }
-
-void cCA::SetInitMask(enum CA_INIT_MASK p)
-{
-	hal_debug("%s param:%d\n", __FUNCTION__, (int)p);
-}

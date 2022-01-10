@@ -9,13 +9,6 @@ typedef std::vector<u16>            CaIdVector;
 typedef std::vector<u16>::iterator      CaIdVectorIterator;
 typedef std::vector<u16>::const_iterator    CaIdVectorConstIterator;
 
-enum CA_INIT_MASK
-{
-	CA_INIT_SC = 1,
-	CA_INIT_CI,
-	CA_INIT_BOTH
-};
-
 enum CA_SLOT_TYPE
 {
 	CA_SLOT_TYPE_SMARTCARD,
@@ -108,7 +101,6 @@ class cCA
 			return true;
 		};
 		bool SendMessage(const CA_MESSAGE *Msg);
-		void SetInitMask(enum CA_INIT_MASK InitMask);
 		int GetCAIDS(CaIdVector & /*Caids*/)
 		{
 			return 0;

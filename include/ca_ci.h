@@ -30,13 +30,6 @@
 /* max multi decrypt per ci-cam */
 #define CI_MAX_MULTI            5
 
-enum CA_INIT_MASK
-{
-	CA_INIT_SC = 1,
-	CA_INIT_CI,
-	CA_INIT_BOTH
-};
-
 enum CA_SLOT_TYPE
 {
 	CA_SLOT_TYPE_SMARTCARD,
@@ -308,7 +301,6 @@ class cCA
 		void setInputSource(eDVBCISlot *slot, bool ci);
 		/// check if data in queue
 		bool checkQueueSize(eDVBCISlot *slot);
-		enum CA_INIT_MASK initMask;
 		int num_slots;
 		bool init;
 		void SendPMT();
@@ -331,10 +323,6 @@ class cCA
 		bool SendPMT(int Unit, unsigned char *Data, int Len, enum CA_SLOT_TYPE SlotType = CA_SLOT_TYPE_ALL);
 		/// Sends a message to the CA thread
 		bool SendMessage(const CA_MESSAGE *Msg);
-		/// Sets which modules to initialize. It is only
-		/// possible to change this once!
-		/// sh4 unused
-		void SetInitMask(enum CA_INIT_MASK InitMask);
 		/// Sets the frequency (in Hz) of the TS stream input (only valid for CI)
 		/// sh4 unused
 		void SetTSClock(u32 Speed, int slot = 0);

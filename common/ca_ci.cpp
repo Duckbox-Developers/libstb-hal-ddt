@@ -1878,11 +1878,6 @@ void cCA::Ready(bool p)
 	printf("%s -> %s param:%d\n", FILENAME, __func__, (int)p);
 }
 
-void cCA::SetInitMask(enum CA_INIT_MASK p)
-{
-	printf("%s -> %s param:%d\n", FILENAME, __func__, (int)p);
-}
-
 SlotIt cCA::GetSlot(unsigned int slot)
 {
 	std::list<eDVBCISlot *>::iterator it;
