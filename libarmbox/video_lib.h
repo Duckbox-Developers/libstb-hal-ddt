@@ -10,20 +10,6 @@ typedef struct cs_vs_format_t
 	char format[16];
 } cs_vs_format_struct_t;
 
-typedef enum
-{
-	ANALOG_SD_RGB_CINCH = 0x00,
-	ANALOG_SD_YPRPB_CINCH,
-	ANALOG_HD_RGB_CINCH,
-	ANALOG_HD_YPRPB_CINCH,
-	ANALOG_SD_RGB_SCART = 0x10,
-	ANALOG_SD_YPRPB_SCART,
-	ANALOG_HD_RGB_SCART,
-	ANALOG_HD_YPRPB_SCART,
-	ANALOG_SCART_MASK = 0x10
-} analog_mode_t;
-
-
 #if BOXMODEL_VUPLUS_ARM
 typedef enum
 {
@@ -256,7 +242,6 @@ class cVideo
 		void Pig(int x, int y, int w, int h, int osd_w = 1064, int osd_h = 600, int startx = 0, int starty = 0, int endx = 1279, int endy = 719);
 		void SetControl(int, int);
 		void setContrast(int val);
-		void SetVideoMode(analog_mode_t mode);
 		void QuadPiP(bool active = false, int _x = 0, int _y = 0, int _w = 360, int _h = 288);
 
 		void SetAudioHandle(void *)

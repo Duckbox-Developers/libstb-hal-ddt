@@ -694,31 +694,6 @@ int cVideo::getPlayState(void)
 	return playstate;
 }
 
-void cVideo::SetVideoMode(analog_mode_t mode)
-{
-	hal_debug("#%d: %s(%d)\n", devnum, __func__, mode);
-	if (!(mode & ANALOG_SCART_MASK))
-	{
-		hal_debug("%s: non-SCART mode ignored\n", __func__);
-		return;
-	}
-	const char *m;
-	switch (mode)
-	{
-		case ANALOG_SD_YPRPB_SCART:
-			m = "yuv";
-			break;
-		case ANALOG_SD_RGB_SCART:
-			m = "rgb";
-			break;
-		default:
-			hal_info("%s unknown mode %d\n", __func__, mode);
-			m = "rgb";
-			break; /* default to rgb */
-	}
-	proc_put("/proc/stb/avs/0/colorformat", m, strlen(m));
-}
-
 bool cVideo::ShowPicture(const char *fname, const char *_destname)
 {
 	bool ret = false;

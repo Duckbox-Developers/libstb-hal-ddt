@@ -12,20 +12,7 @@ typedef struct cs_vs_format_t
 
 typedef enum
 {
-	ANALOG_SD_RGB_CINCH = 0x00,
-	ANALOG_SD_YPRPB_CINCH,
-	ANALOG_HD_RGB_CINCH,
-	ANALOG_HD_YPRPB_CINCH,
-	ANALOG_SD_RGB_SCART = 0x10,
-	ANALOG_SD_YPRPB_SCART,
-	ANALOG_HD_RGB_SCART,
-	ANALOG_HD_YPRPB_SCART,
-	ANALOG_SCART_MASK = 0x10
-} analog_mode_t;
-
-typedef enum
-{
-	COLORFORMAT_RGB = 0x10, // keep compatible with analog_mode_t
+	COLORFORMAT_RGB = 0x10,
 	COLORFORMAT_YUV,
 	COLORFORMAT_CVBS,
 	COLORFORMAT_SVIDEO,
@@ -223,7 +210,6 @@ class cVideo
 		void SetControl(int, int);
 		void VideoParamWatchdog(void);
 		void setContrast(int val);
-		void SetVideoMode(analog_mode_t mode);
 
 		void SetAudioHandle(void *)
 		{
