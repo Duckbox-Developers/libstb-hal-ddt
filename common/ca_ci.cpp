@@ -18,7 +18,6 @@
 
 #include "ca_ci.h"
 #include "hal_debug.h"
-#include <cs_api.h>
 #include <hardware_caps.h>
 
 #include <dvbci_session.h>
@@ -63,9 +62,9 @@ uintptr_t EVT_CA_MESSAGE = 0x80000000 + 60;
 uint32_t EVT_CA_MESSAGE = 0x80000000 + 60;
 #endif
 
-static cs_messenger cam_messenger = NULL;
+static hal_messenger cam_messenger = NULL;
 
-void cs_register_messenger(cs_messenger messenger)
+void hal_register_messenger(hal_messenger messenger)
 {
 	cam_messenger = messenger;
 	return;

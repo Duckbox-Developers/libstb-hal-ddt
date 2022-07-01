@@ -12,7 +12,6 @@
 
 #include "mmi.h"
 #include "cs_types.h"
-#include "cs_api.h"
 
 /* constants taken from dvb-apps */
 #define T_SB                0x80    // sb                           primitive   h<--m
@@ -102,6 +101,21 @@ typedef struct CA_MESSAGE
 		uint64_t ParamLong[4];
 	} Msg;
 } CA_MESSAGE;
+
+typedef void (*hal_messenger)(unsigned int msg, unsigned int data);
+
+#if HAVE_DUCKBOX_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+void hal_register_messenger(hal_messenger messenger);
+#else
+static inline void hal_register_messenger(hal_messenger)
+{
+	return;
+};
+#endif
+static inline void hal_deregister_messenger(void)
+{
+	return;
+};
 
 typedef std::set<int> ca_map_t;
 typedef ca_map_t::iterator ca_map_iterator_t;
