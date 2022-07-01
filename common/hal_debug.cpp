@@ -7,9 +7,6 @@
 #include <sys/prctl.h>
 #include <string.h>
 
-
-int cnxt_debug = 0; /* compat, unused */
-
 int debuglevel = -1;
 
 static const char *hal_facility[] =
