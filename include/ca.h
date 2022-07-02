@@ -67,6 +67,21 @@ enum CA_MESSAGE_MSGID
 	CA_MESSAGE_MSG_EXIT
 };
 
+typedef void (*hal_messenger)(unsigned int msg, unsigned int data);
+
+#if HAVE_DUCKBOX_HARDWARE || HAVE_ARM_HARDWARE || HAVE_MIPS_HARDWARE
+void hal_register_messenger(hal_messenger messenger);
+#else
+static inline void hal_register_messenger(hal_messenger)
+{
+	return;
+};
+#endif
+static inline void hal_deregister_messenger(void)
+{
+	return;
+};
+
 typedef std::set<int> ca_map_t;
 typedef ca_map_t::iterator ca_map_iterator_t;
 
