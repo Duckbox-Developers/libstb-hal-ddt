@@ -1827,8 +1827,8 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 		avContextTab[AVIdx]->iformat->flags |= AVFMT_SEEK_TO_PTS;
 #else
 		if (!(avContextTab[AVIdx]->iformat->flags & AVFMT_SEEK_TO_PTS)) {
-			printf("[container_ffmpeg.c] - AVFMT_SEEK_TO_PTS not available - FIXME, FFMPEG 4.5 has problems with some VOB/MPG...\n");
-			return false; // FIXME, FFMPEG 4.5 has problems with some VOB/MPG...
+			printf("[container_ffmpeg.c] - AVFMT_SEEK_TO_PTS not available - FIXME, FFMPEG >= 4.5 has problems with some VOB/MPG...\n");
+			return false; // FIXME, FFMPEG >= 4.5 has problems with some VOB/MPG...
 		}
 #endif
 		avContextTab[AVIdx]->flags = AVFMT_FLAG_GENPTS;
