@@ -43,6 +43,7 @@
 #include <sys/prctl.h>
 #include <stdint.h>
 
+#include <libavcodec/version.h>
 #include <ffmpeg/mpeg4audio.h>
 
 #include "common.h"

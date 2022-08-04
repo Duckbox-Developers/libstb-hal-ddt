@@ -3,6 +3,7 @@
  * allows to compile and use exteplayer3
  * with old ffmpeg libs
  */
+#include <libavcodec/version.h>
 #if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59,0,100)
 //extern "C" {
 #include <libavcodec/avcodec.h>

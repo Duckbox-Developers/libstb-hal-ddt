@@ -31,6 +31,7 @@
 #include <OpenThreads/Condition>
 
 extern "C" {
+#include <libavcodec/version.h>
 #include <libavutil/avutil.h>
 #include <libavutil/time.h>
 #include <libavformat/avformat.h>

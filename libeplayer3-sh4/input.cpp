@@ -32,6 +32,8 @@
 #include "player.h"
 #include "misc.h"
 
+#include <libavcodec/version.h>
+
 static const char *FILENAME = "eplayer/input.cpp";
 
 #define averror(_err,_fun) ({                                       \

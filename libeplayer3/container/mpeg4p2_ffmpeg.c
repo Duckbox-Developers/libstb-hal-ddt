@@ -3,6 +3,7 @@
 // http://forums.openpli.org/topic/39326-gstreamer10-and-mpeg4-part2/?hl=%2Bmpeg4+%2Bpart2
 //
 
+#include <libavcodec/version.h>
 #if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59,0,100)
 #include "libavcodec/bsf.h"
 #endif
