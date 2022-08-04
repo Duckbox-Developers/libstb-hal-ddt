@@ -28,6 +28,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <limits.h>
 
 #include "libavutil/intreadwrite.h"
 #include "libavutil/avassert.h"
