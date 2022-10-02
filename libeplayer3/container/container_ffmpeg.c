@@ -1840,15 +1840,13 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 		wrapped_set_max_analyze_duration(avContextTab[AVIdx], 1);
 	}
 
-	if (!context->playback->noprobe)
-	{
-		ffmpeg_printf(20, "find_streaminfo\n");
+	ffmpeg_printf(20, "find_streaminfo\n");
 
-		if (avformat_find_stream_info(avContextTab[AVIdx], NULL) < 0)
-		{
-			ffmpeg_err("Error avformat_find_stream_info\n");
-		}
+	if (avformat_find_stream_info(avContextTab[AVIdx], NULL) < 0)
+	{
+		ffmpeg_err("Error avformat_find_stream_info\n");
 	}
+
 //for buffered io
 	if (avContextTab[AVIdx] != NULL && avContextTab[AVIdx]->pb != NULL && !context->playback->isTSLiveMode)
 	{
