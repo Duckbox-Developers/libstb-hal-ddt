@@ -90,6 +90,25 @@ bool cPlayback::Start(char *filename, int vpid, int vtype, int apid, int ac3, in
 	else
 		isHTTP = true;
 
+	if (isHTTP && headers.empty())
+	{
+		size_t pos = file.find('#');
+		if (pos != std::string::npos)
+		{
+			headers = file.substr(pos + 1);
+			pos = headers.find("User-Agent=");
+			if (pos != std::string::npos)
+				headers.replace(pos + 10, 1, ": ");
+		}
+	}
+
+	if (!headers.empty())
+	{
+		static AVDictionary *g_avio_opts = NULL;
+		const char hkey[] = "headers";
+		av_dict_set(&g_avio_opts, hkey, headers.c_str(), 0);
+	}
+
 	if (player->Open(file.c_str(), no_probe, headers))
 	{
 		if (pm == PLAYMODE_TS)
