@@ -511,10 +511,12 @@ void cAudio::ScheduleMute(bool On)
 	hal_debug("%s %d\n", __FUNCTION__, On);
 }
 
+#if !BOXMODEL_E4HDULTRA
 void cAudio::EnableAnalogOut(bool enable)
 {
 	hal_debug("%s %d\n", __FUNCTION__, enable);
 }
+#endif
 
 #define AUDIO_BYPASS_ON  0
 #define AUDIO_BYPASS_OFF 1
