@@ -107,7 +107,7 @@ class cAudio
 		void SetHdmiDD(bool enable);
 		void SetSpdifDD(bool enable);
 		void ScheduleMute(bool On);
-#if !BOXMODEL_E4HDULTRA
+#if !BOXMODEL_E4HDULTRA && !BOXMODEL_BRE2ZE4K
 		void EnableAnalogOut(bool enable);
 #endif
 };
