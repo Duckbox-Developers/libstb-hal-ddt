@@ -221,9 +221,9 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_xres = 220;
 	caps.display_yres = 176;
 	caps.display_type = HW_DISPLAY_GFX;
-	caps.display_can_deepstandby = 0;
-	caps.display_can_set_brightness = 1;
-	caps.display_has_statusline = 0;
+	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
