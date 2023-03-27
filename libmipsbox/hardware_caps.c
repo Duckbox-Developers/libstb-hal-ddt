@@ -53,6 +53,24 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxname, "DUO");
 	strcpy(caps.boxarch, "BCM7335");
 #endif
+#if BOXMODEL_VUDUO2
+	initialized = 1;
+	caps.has_CI = 2;
+	caps.can_cec = 1;
+	caps.can_shutdown = 1;
+	caps.display_xres = 16;
+	caps.display_type = HW_DISPLAY_LINE_TEXT;
+	caps.display_can_deepstandby = 1;
+	caps.display_can_set_brightness = 1;
+	caps.display_has_statusline = 0;
+	caps.has_button_timer = 1;
+	caps.has_HDMI = 1;
+	caps.has_SCART = 1;
+//	caps.has_SCART_input = 1;
+	strcpy(caps.boxvendor, "VU+");
+	strcpy(caps.boxname, "DUO2");
+	strcpy(caps.boxarch, "BCM7424");
+#endif
 #if BOXMODEL_DM8000
 	initialized = 1;
 	caps.has_CI = 4;
