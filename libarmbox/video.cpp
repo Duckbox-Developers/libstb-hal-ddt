@@ -196,7 +196,8 @@ static const char *vid_modes[] =
 	"2160p30",  // VIDEO_STD_2160P30
 	"2160p50",  // VIDEO_STD_2160P50
 	"2160p60",  // VIDEO_STD_2160P60
-	"720p50"    // VIDEO_STD_AUTO
+	"720p50",   // VIDEO_STD_AUTO
+	NULL
 };
 
 #define VIDEO_STREAMTYPE_MPEG2 0
