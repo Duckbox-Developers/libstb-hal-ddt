@@ -69,15 +69,6 @@ typedef enum
 
 typedef enum
 {
-	VIDEO_PLAY_STILL = 0,
-	VIDEO_PLAY_CLIP,
-	VIDEO_PLAY_TRICK,
-	VIDEO_PLAY_MOTION,
-	VIDEO_PLAY_MOTION_NO_SYNC
-} VIDEO_PLAY_MODE;
-
-typedef enum
-{
 	VIDEO_STD_NTSC,
 	VIDEO_STD_SECAM,
 	VIDEO_STD_PAL,
@@ -155,7 +146,6 @@ class cVideo
 
 		VIDEO_FORMAT StreamType;
 		DISPLAY_AR DisplayAR;
-		VIDEO_PLAY_MODE SyncMode;
 		DISPLAY_AR_MODE ARMode;
 		DISPLAY_AR PictureAR;
 		VIDEO_FRAME_RATE FrameRate;
