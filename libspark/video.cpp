@@ -140,19 +140,21 @@ static const char *VMPEG_visible[] =
 static const char *vid_modes[] =
 {
 	"pal",      // VIDEO_STD_NTSC
-	"pal",      // VIDEO_STD_SECAM
 	"pal",      // VIDEO_STD_PAL
+	"pal",      // VIDEO_STD_SECAM
 	"480p",     // VIDEO_STD_480P
 	"576p50",   // VIDEO_STD_576P
-	"720p60",   // VIDEO_STD_720P60
-	"1080i60",  // VIDEO_STD_1080I60
 	"720p50",   // VIDEO_STD_720P50
+	"720p60",   // VIDEO_STD_720P60
+	"1080i25",  // VIDEO_STD_1080I25
 	"1080i50",  // VIDEO_STD_1080I50
-	"1080p30",  // VIDEO_STD_1080P30
+	"1080i60",  // VIDEO_STD_1080I60
 	"1080p24",  // VIDEO_STD_1080P24
 	"1080p25",  // VIDEO_STD_1080P25
-	"720p50",   // VIDEO_STD_AUTO -> not implemented
-	"1080p50",  // VIDEO_STD_1080P50 -> SPARK only
+	"1080p30",  // VIDEO_STD_1080P30
+	"1080p50",  // VIDEO_STD_1080P50
+	"1080p60",  // VIDEO_STD_1080P60
+	"720p50"    // VIDEO_STD_AUTO
 	NULL
 };
 
