@@ -81,7 +81,7 @@ hdmi_cec *CEC = hdmi_cec::getInstance();
 
 hdmi_cec::hdmi_cec()
 {
-	standby_cec_activ = autoview_cec_activ = standby = muted = false;
+	standby_cec_activ = autoview_cec_activ = standby = muted = running = false;
 	hdmiFd = -1;
 	volume = 0;
 	fallback = false;
