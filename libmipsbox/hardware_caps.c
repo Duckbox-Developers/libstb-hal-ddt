@@ -17,6 +17,7 @@
 #include <sys/ioctl.h>
 
 #include <hardware_caps.h>
+#include <proc_tools.h>
 
 #define FP_DEV "/dev/dbox/oled0"
 static int initialized = 0;
@@ -52,8 +53,7 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "DUO");
 	strcpy(caps.boxarch, "BCM7335");
-#endif
-#if BOXMODEL_VUDUO2
+#elif BOXMODEL_VUDUO2
 	initialized = 1;
 	caps.has_CI = 2;
 	caps.can_cec = 1;
@@ -70,8 +70,7 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxvendor, "VU+");
 	strcpy(caps.boxname, "DUO2");
 	strcpy(caps.boxarch, "BCM7424");
-#endif
-#if BOXMODEL_DM8000
+#elif BOXMODEL_DM8000
 	initialized = 1;
 	caps.has_CI = 4;
 	caps.can_cec = 0;
@@ -84,13 +83,30 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 1;
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
-	caps.has_HDMI = 1;          // wrong (has only DVI), only for testing
+	caps.has_HDMI = 1;			// has only DVI, but works
 	caps.has_SCART = 2;
 //	caps.has_SCART_input = 1;
 //	caps.has_DVI = 1;
 	strcpy(caps.boxvendor, "DM");
 	strcpy(caps.boxname, "8000HD");
 	strcpy(caps.boxarch, "BCM7400D2");
+#else // generic mips box
+	initialized = 1;
+	caps.has_CI = 1;
+	caps.can_cec = 1;
+	caps.can_shutdown = 1;
+	caps.display_xres = 4;
+	caps.display_has_colon = 1;
+	caps.display_type = HW_DISPLAY_LED_NUM;
+	caps.display_can_deepstandby = 1;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 1;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.has_button_timer = 1;
+	caps.has_HDMI = 1;
+	caps.has_SCART = 1;
+	proc_get("/proc/stb/info/boxtype", caps.boxvendor, 10);
+	proc_get("/proc/stb/info/model", caps.boxname, 10);
+	proc_get("/proc/stb/info/chipset", caps.boxarch, 10);
 #endif
 	return &caps;
 }
