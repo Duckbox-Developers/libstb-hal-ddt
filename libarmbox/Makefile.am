@@ -23,15 +23,6 @@ libarmbox_la_SOURCES = \
 	record.cpp \
 	hdmi_cec.cpp
 
-if ENABLE_GSTREAMER_10
-libarmbox_la_SOURCES += \
-	playback_gst.cpp
-
-AM_LDFLAGS += \
-	-lgstreamer-1.0 \
-	-lgsttag-1.0 \
-	-lgstmpegts-1.0
-else
 libarmbox_la_SOURCES += \
 	playback_libeplayer3.cpp
 
@@ -40,6 +31,5 @@ AM_CPPFLAGS += \
 
 AM_LDFLAGS += \
 	-lass
-endif
 
 AM_CPPFLAGS += -D__STDC_FORMAT_MACROS -D__STDC_CONSTANT_MACROS
