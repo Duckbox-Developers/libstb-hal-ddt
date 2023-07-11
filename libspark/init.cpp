@@ -48,18 +48,18 @@ typedef struct
 
 static input_device_t input_device[] =
 {
-	{ "/dev/input/nevis_ir",    "lircd",            -1, 0, 0, 0 },
-	{ "/dev/input/tdt_rc",      "TDT RC event driver",      -1, 0, 0, 0 },
-	{ "/dev/input/fulan_fp",    "fulan front panel buttons",    -1, 0, 0, 0 },
-	{ "/dev/input/event0",      NULL,               -1, 0, 0, 0 },
-	{ "/dev/input/event1",      NULL,               -1, 0, 0, 0 },
-	{ "/dev/input/event2",      NULL,               -1, 0, 0, 0 },
-	{ "/dev/input/event3",      NULL,               -1, 0, 0, 0 },
-	{ "/dev/input/event4",      NULL,               -1, 0, 0, 0 },
-	{ "/dev/input/event5",      NULL,               -1, 0, 0, 0 },
-	{ "/dev/input/event6",      NULL,               -1, 0, 0, 0 },
-	{ "/dev/input/event7",      NULL,               -1, 0, 0, 0 },
-	{ NULL,             NULL,               -1, 0, 0, 0 }
+	{ "/dev/input/nevis_ir",	"lircd",			-1, 0, 0, 0 },
+	{ "/dev/input/tdt_rc",		"TDT RC event driver",		-1, 0, 0, 0 },
+	{ "/dev/input/fulan_fp",	"fulan front panel buttons",	-1, 0, 0, 0 },
+	{ "/dev/input/event0",		NULL,				-1, 0, 0, 0 },
+	{ "/dev/input/event1",		NULL,				-1, 0, 0, 0 },
+	{ "/dev/input/event2",		NULL,				-1, 0, 0, 0 },
+	{ "/dev/input/event3",		NULL,				-1, 0, 0, 0 },
+	{ "/dev/input/event4",		NULL,				-1, 0, 0, 0 },
+	{ "/dev/input/event5",		NULL,				-1, 0, 0, 0 },
+	{ "/dev/input/event6",		NULL,				-1, 0, 0, 0 },
+	{ "/dev/input/event7",		NULL,				-1, 0, 0, 0 },
+	{ NULL,				NULL,				-1, 0, 0, 0 }
 };
 
 #define number_of_input_devices (sizeof(input_device)/sizeof(input_device_t) - 1)
