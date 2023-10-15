@@ -173,7 +173,6 @@ int LinuxDvbOpen(Context_t *context __attribute__((unused)), char *type)
 		if (videofd < 0)
 		{
 			linuxdvb_err("failed to open %s - errno %d, %s\n", VIDEODEV, errno, strerror(errno));
-			linuxdvb_err("%s\n",);
 			return cERR_LINUXDVB_ERROR;
 		}
 
@@ -1013,7 +1012,7 @@ static int reset(Context_t *context)
 
 	if (writer == NULL)
 	{
-		linuxdvb_err("unknown video codec %s\n", Encoding);
+		linuxdvb_err("unknown audio codec %s\n", Encoding);
 		ret = cERR_LINUXDVB_ERROR;
 	}
 	else
@@ -1060,8 +1059,8 @@ static int Command(Context_t *context, OutputCmd_t command, void *argument)
 		}
 		case OUTPUT_STOP:
 		{
-			reset(context);
 			ret = LinuxDvbStop(context, (char *)argument);
+			reset(context);
 			sCURRENT_PTS = 0;
 			break;
 		}
