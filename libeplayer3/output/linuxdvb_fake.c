@@ -417,8 +417,8 @@ static int Command(Context_t *context, OutputCmd_t command, void *argument)
 		}
 		case OUTPUT_STOP:
 		{
-			reset(context);
 			ret = LinuxDvbStop(context, (char *)argument);
+			reset(context);
 			sCURRENT_PTS = 0;
 			break;
 		}
