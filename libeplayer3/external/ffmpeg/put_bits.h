@@ -32,6 +32,7 @@
 
 #include "libavutil/intreadwrite.h"
 #include "libavutil/avassert.h"
+#include "libavutil/common.h"
 
 typedef struct PutBitContext
 {
