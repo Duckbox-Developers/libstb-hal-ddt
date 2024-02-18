@@ -778,7 +778,14 @@ static void FFMPEGThread(Context_t *context)
 			}
 		}
 
-		if (!isWaitingForFinish && (ffmpegStatus = av_read_frame(avContextTab[cAVIdx], &packet)) == 0)
+		if (!isWaitingForFinish)
+		{
+			releaseMutex(__FILE__, __FUNCTION__, __LINE__);
+			ffmpegStatus = av_read_frame(avContextTab[cAVIdx], &packet);
+			getMutex(__FILE__, __FUNCTION__, __LINE__);
+		}
+
+		if (!isWaitingForFinish && (ffmpegStatus == 0))
 		{
 			int64_t pts            = 0;
 			int64_t dts            = 0;
@@ -1390,6 +1397,10 @@ int SAM_ReadFunc(void *ptr, uint8_t *buffer, int lSize)
 	if (!io->pMoovFile)
 	{
 		ret = (int)fread((void *) buffer, (size_t) 1, (size_t) lSize, io->pFile);
+#if (LIBAVFORMAT_VERSION_MAJOR > 58) || ((LIBAVFORMAT_VERSION_MAJOR == 58) && (LIBAVFORMAT_VERSION_MINOR > 79))
+		if (ret == 0)
+			ret = AVERROR_EOF;
+#endif
 	}
 	else
 	{
@@ -1825,11 +1836,6 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 	{
 #if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(59,0,100)
 		avContextTab[AVIdx]->iformat->flags |= AVFMT_SEEK_TO_PTS;
-#else
-		if (!(avContextTab[AVIdx]->iformat->flags & AVFMT_SEEK_TO_PTS)) {
-			printf("[container_ffmpeg.c] - AVFMT_SEEK_TO_PTS not available - FIXME, FFMPEG >= 4.5 has problems with some VOB/MPG...\n");
-			return false; // FIXME, FFMPEG >= 4.5 has problems with some VOB/MPG...
-		}
 #endif
 		avContextTab[AVIdx]->flags = AVFMT_FLAG_GENPTS;
 	}
