@@ -315,7 +315,7 @@ bool cPlayback::SetVPid(int /*pid*/)
 
 bool cPlayback::SetSubtitlePid(int pid)
 {
-	hal_info("%s\n", __func__);
+	hal_info("%s %d\n", __func__, pid);
 	int i = pid;
 
 	if (pid != mSubtitleStream)
@@ -329,7 +329,7 @@ bool cPlayback::SetSubtitlePid(int pid)
 
 bool cPlayback::SetTeletextPid(int pid)
 {
-	hal_info("%s\n", __func__);
+	hal_info("%s %d\n", __func__, pid);
 
 	//int i = pid;
 
