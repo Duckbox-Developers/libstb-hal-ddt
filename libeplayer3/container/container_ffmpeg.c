@@ -2724,7 +2724,9 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 							}
 							if (c->codec)
 								if (context->manager->subtitle->Command(context, MANAGER_ADD, &track) < 0)
+								{
 									ffmpeg_err("failed to add subtitle track %d\n", n);
+								}
 						}
 					}
 					break;
