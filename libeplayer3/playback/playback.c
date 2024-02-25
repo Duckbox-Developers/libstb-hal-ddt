@@ -800,8 +800,6 @@ static int32_t PlaybackSwitchAudio(Context_t *context, int32_t *track)
 static int32_t PlaybackSwitchSubtitle(Context_t *context, int32_t *track)
 {
 	int32_t ret = cERR_PLAYBACK_NO_ERROR;
-	int32_t curtrackid = -1;
-	int32_t nextrackid = -1;
 
 	playback_printf(10, "Track: %d\n", *track);
 
@@ -809,22 +807,14 @@ static int32_t PlaybackSwitchSubtitle(Context_t *context, int32_t *track)
 	{
 		if (context->manager && context->manager->subtitle)
 		{
-			context->manager->subtitle->Command(context, MANAGER_GET, &curtrackid);
-			context->manager->subtitle->Command(context, MANAGER_SET, track);
-			context->manager->subtitle->Command(context, MANAGER_GET, &nextrackid);
+			int trackid;
 
-			if (curtrackid != nextrackid && nextrackid > -1)
+			if (context->manager->subtitle->Command(context, MANAGER_SET, track) < 0)
 			{
-				if (context->output && context->output->subtitle)
-				{
-					context->output->subtitle->Command(context, OUTPUT_SWITCH, (void *)"subtitle");
-				}
-
-				if (context->container && context->container->selectedContainer)
-				{
-					context->container->selectedContainer->Command(context, CONTAINER_SWITCH_SUBTITLE, &nextrackid);
-				}
+				playback_err("manager set track failed\n");
 			}
+
+			context->manager->subtitle->Command(context, MANAGER_GET, &trackid);
 		}
 		else
 		{

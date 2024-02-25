@@ -431,6 +431,7 @@ static char *Codec2Encoding(int32_t codec_id, int32_t media_type, uint8_t *extra
 			return "S_TEXT/ASS"; /* Hellmaster1024: seems to be ASS instead of SSA */
 		case AV_CODEC_ID_DVD_SUBTITLE:
 		case AV_CODEC_ID_DVB_SUBTITLE:
+			return "S_TEXT/BITMAP";
 		case AV_CODEC_ID_XSUB:
 		case AV_CODEC_ID_MOV_TEXT:
 		case AV_CODEC_ID_DVB_TELETEXT:
@@ -531,6 +532,11 @@ static char *searchMeta(void *metadata, char *ourTag)
 /* **************************** */
 /* Worker Thread                */
 /* **************************** */
+
+// from neutrino-mp/lib/libdvbsubtitle/dvbsub.cpp
+extern void dvbsub_write(AVSubtitle *, int64_t);
+extern void dvbsub_ass_write(AVCodecContext *c, AVSubtitle *sub, int pid);
+extern void dvbsub_ass_clear(void);
 
 static void FFMPEGThread(Context_t *context)
 {
@@ -1228,6 +1234,7 @@ static void FFMPEGThread(Context_t *context)
 			else if (subtitleTrack && (subtitleTrack->Id == pid))
 			{
 				int64_t duration = -1;
+				int err = -1;
 				pts = calcPts(cAVIdx, subtitleTrack->stream, packet.pts);
 				AVStream *stream = subtitleTrack->stream;
 
@@ -1242,6 +1249,64 @@ static void FFMPEGThread(Context_t *context)
 					duration = (int64_t)av_rescale(get_packet_duration(&packet), (int64_t)stream->time_base.num * 1000, stream->time_base.den);
 				}
 
+				AVCodecContext *c = wrapped_avcodec_get_context(subtitleTrack->AVIdx, stream);
+
+				if (!c->codec)
+				{
+					c->codec = avcodec_find_decoder(c->codec_id);
+					if (!c->codec)
+					{
+						ffmpeg_err("avcodec_find_decoder failed for subtitle track");
+						c->codec = NULL;
+					}
+				}
+				if (c->codec)
+				{
+					printf("**Subtitle PID : 0x%X  Codec-ID : 0x%5X\n", pid, c->codec_id);
+					AVSubtitle sub;
+					memset(&sub, 0, sizeof(AVSubtitle));
+					int got_sub_ptr = 0;
+				
+					if (!avcodec_is_open(c))
+					{
+						err = avcodec_open2(c, c->codec, NULL);
+					}
+					if (err == 0 )
+					{
+						if (avcodec_decode_subtitle2(c, &sub, &got_sub_ptr, &packet) < 0)
+						{
+							ffmpeg_err("error decoding subtitle\n");
+						}
+						if (got_sub_ptr && sub.num_rects > 0)
+						{
+							printf("**Sub Type: %d\n",sub.rects[0]->type);
+								switch (sub.rects[0]->type)
+								{
+									case SUBTITLE_TEXT: // FIXME?
+									case SUBTITLE_ASS:
+									{
+										dvbsub_ass_write(c, &sub, pid);
+										break;
+									}
+									case SUBTITLE_BITMAP:
+									{
+										ffmpeg_printf(0, "bitmap\n");
+										dvbsub_write(&sub, pts);
+										break;
+									}
+									default:
+										break;
+								}
+						}
+					}
+
+					if (avcodec_is_open(c))
+					{
+						avcodec_free_context(&c);
+					}
+				/* avsubtitle_free() -> will be called by handler */
+				}
+/*				// ***Old Code***
 				if (duration > 0)
 				{
 					SubtitleOut_t subOut;
@@ -1255,6 +1320,7 @@ static void FFMPEGThread(Context_t *context)
 						ffmpeg_err("writing data to teletext fifo failed\n");
 					}
 				}
+*/				// ***End Old Code***
 			}
 		}
 		else
@@ -1336,6 +1402,8 @@ static void FFMPEGThread(Context_t *context)
 		wrapped_packet_unref(&packet);
 		releaseMutex(__FILE__, __FUNCTION__, __LINE__);
 	} /* while */
+
+	dvbsub_ass_clear();
 
 	if (swr)
 	{
@@ -2091,7 +2159,7 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 				if (context->manager->chapter->Command(context, MANAGER_ADD, &track) < 0)
 				{
 					/* konfetti: fixme: is this a reason to return with error? */
-					ffmpeg_err("failed to add track %d\n", n);
+					ffmpeg_err("failed to add track %d\n", i);
 				}
 			}
 		}
@@ -2592,11 +2660,14 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 #if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55, 3, 100)
 					    get_codecpar(stream)->codec_id != AV_CODEC_ID_ASS &&
 #endif
+					    get_codecpar(stream)->codec_id != AV_CODEC_ID_DVB_TELETEXT &&
+					    get_codecpar(stream)->codec_id != AV_CODEC_ID_DVB_SUBTITLE &&
 					    get_codecpar(stream)->codec_id != AV_CODEC_ID_SUBRIP &&
 					    get_codecpar(stream)->codec_id != AV_CODEC_ID_TEXT &&
 					    get_codecpar(stream)->codec_id != AV_CODEC_ID_SRT &&
 					    get_codecpar(stream)->codec_id != AV_CODEC_ID_WEBVTT)
 					{
+						printf("subtitle with not supported codec codec_id[%u]\n", (uint32_t)get_codecpar(stream)->codec_id);
 						ffmpeg_printf(10, "subtitle with not supported codec codec_id[%u]\n", (uint32_t)get_codecpar(stream)->codec_id);
 					}
 					else if (initial && context->manager->subtitle)
@@ -2617,6 +2688,12 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 						track.Id             = ((AVStream *)(track.stream))->id;
 						track.duration       = (int64_t)av_rescale(stream->duration, (int64_t)stream->time_base.num * 1000, stream->time_base.den);
 
+						track.aacbuf = 0;
+						track.have_aacheader = -1;
+
+						track.width = -1; /* will be filled online from videotrack */
+						track.height = -1; /* will be filled online from videotrack */
+
 						if (stream->duration == AV_NOPTS_VALUE)
 						{
 							ffmpeg_printf(10, "Stream has no duration so we take the duration from context\n");
@@ -2633,9 +2710,21 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 
 						ffmpeg_printf(10, "FOUND SUBTITLE %s\n", track.Name);
 
-						if (context->manager->subtitle->Command(context, MANAGER_ADD, &track) < 0)
-						{
-							ffmpeg_err("failed to add subtitle track %d\n", n);
+						if (context->manager->subtitle)
+ 						{
+							AVCodecContext *c = wrapped_avcodec_get_context(cAVIdx, stream);
+							if (!c->codec)
+							{
+								c->codec = avcodec_find_decoder(c->codec_id);
+								if (!c->codec)
+								{
+									ffmpeg_err("avcodec_find_decoder failed for subtitle track %d\n", n);
+									c->codec = NULL;
+								}
+							}
+							if (c->codec)
+								if (context->manager->subtitle->Command(context, MANAGER_ADD, &track) < 0)
+									ffmpeg_err("failed to add subtitle track %d\n", n);
 						}
 					}
 					break;
@@ -3075,6 +3164,7 @@ static int32_t container_ffmpeg_get_length(Context_t *context, int64_t *length)
 	ffmpeg_printf(50, "\n");
 	Track_t *videoTrack = NULL;
 	Track_t *audioTrack = NULL;
+	Track_t *subtitleTrack = NULL;
 	Track_t *current = NULL;
 
 	if (length == NULL)
@@ -3085,6 +3175,7 @@ static int32_t container_ffmpeg_get_length(Context_t *context, int64_t *length)
 
 	context->manager->video->Command(context, MANAGER_GET_TRACK, &videoTrack);
 	context->manager->audio->Command(context, MANAGER_GET_TRACK, &audioTrack);
+	context->manager->subtitle->Command(context, MANAGER_GET_TRACK, &subtitleTrack);
 
 	if (videoTrack != NULL)
 	{
@@ -3093,6 +3184,10 @@ static int32_t container_ffmpeg_get_length(Context_t *context, int64_t *length)
 	else if (audioTrack != NULL)
 	{
 		current = audioTrack;
+	}
+	else if (subtitleTrack != NULL)
+	{
+		current = subtitleTrack;
 	}
 
 	*length = 0;

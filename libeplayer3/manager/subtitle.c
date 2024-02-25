@@ -276,7 +276,7 @@ static int Command(Context_t *context, ManagerCmd_t command, void *argument)
 
 			subtitle_mgr_printf(20, "%s::%s MANAGER_SET id=%d\n", __FILE__, __FUNCTION__, *((int *)argument));
 
-			if (*((int *)argument) < 0)
+			if (*((int *)argument) <= 0)
 			{
 				CurrentTrack = -1;
 				break;

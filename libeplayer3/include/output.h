@@ -86,7 +86,6 @@ typedef struct OutputHandler_s
 	char *Name;
 	Output_t *audio;
 	Output_t *video;
-	Output_t *subtitle;
 	int32_t (* Command)(Context_t *, OutputCmd_t, void *);
 } OutputHandler_t;
 
