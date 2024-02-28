@@ -322,7 +322,10 @@ bool cPlayback::SetSubtitlePid(int pid)
 	{
 		if (player && player->playback)
 			player->playback->Command(player, PLAYBACK_SWITCH_SUBTITLE, (void *)&i);
-		mSubtitleStream = pid;
+		if (!pid)
+			mSubtitleStream = -1;
+		else
+			mSubtitleStream = pid;
 	}
 	return true;
 }

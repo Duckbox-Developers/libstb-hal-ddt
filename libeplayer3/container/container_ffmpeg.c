@@ -1262,7 +1262,7 @@ static void FFMPEGThread(Context_t *context)
 				}
 				if (c->codec)
 				{
-					printf("**Subtitle PID : 0x%X  Codec-ID : 0x%5X\n", pid, c->codec_id);
+					ffmpeg_printf(0, "Subtitle PID : 0x%X  Codec-ID : 0x%5X\n", pid, c->codec_id);
 					AVSubtitle sub;
 					memset(&sub, 0, sizeof(AVSubtitle));
 					int got_sub_ptr = 0;
@@ -1279,7 +1279,7 @@ static void FFMPEGThread(Context_t *context)
 						}
 						if (got_sub_ptr && sub.num_rects > 0)
 						{
-							printf("**Sub Type: %d\n",sub.rects[0]->type);
+								ffmpeg_printf(0, "Subtitle Type= %s\n", (sub.rects[0]->type == 2) ? "TEXT" : (sub.rects[0]->type == 3) ? "ASS" : (sub.rects[0]->type == 1) ? "BITMAP " : "NONE");
 								switch (sub.rects[0]->type)
 								{
 									case SUBTITLE_TEXT: // FIXME?
@@ -1290,7 +1290,6 @@ static void FFMPEGThread(Context_t *context)
 									}
 									case SUBTITLE_BITMAP:
 									{
-										ffmpeg_printf(0, "bitmap\n");
 										dvbsub_write(&sub, pts);
 										break;
 									}
