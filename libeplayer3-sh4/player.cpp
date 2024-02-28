@@ -451,7 +451,7 @@ int Player::GetAudioPid()
 int Player::GetSubtitlePid()
 {
 	Track *track = input.subtitleTrack;
-	return track ? track->pid : 0;
+	return track ? track->pid : -1;
 }
 
 int Player::GetTeletextPid()
