@@ -144,7 +144,7 @@ static void LinuxDvbBuffThread(Context_t *context)
 
 	PlaybackDieNowRegisterCallback(WriteWakeUp);
 
-	while (0 == PlaybackDieNow(0))
+	while (PlaybackDieNow(0) == 0)
 	{
 		pthread_mutex_lock(&bufferingMtx);
 		if (nodePtr)
@@ -420,7 +420,7 @@ ssize_t BufferingWriteV(int fd, const struct iovec *iov, int ic)
 	}
 
 	pthread_mutex_lock(&bufferingMtx);
-	while (0 == PlaybackDieNow(0))
+	while (PlaybackDieNow(0) == 0)
 	{
 		if (bufferingDataSize + chunkSize >= maxBufferingDataSize)
 		{

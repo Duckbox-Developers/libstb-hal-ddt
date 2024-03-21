@@ -604,7 +604,7 @@ static void FFMPEGThread(Context_t *context)
 		 */
 #ifdef __sh__
 		//IF MOVIE IS PAUSED, WAIT
-		if (0 == bufferSize && context->playback->isPaused)
+		if (bufferSize == 0 && context->playback->isPaused)
 		{
 			ffmpeg_printf(20, "paused\n");
 			reset_finish_timeout();
@@ -842,8 +842,7 @@ static void FFMPEGThread(Context_t *context)
 				}
 				else
 #ifdef HAVE_FLV2MPEG4_CONVERTER
-					if (get_codecpar(avContextTab[cAVIdx]->streams[packet.stream_index])->codec_id == AV_CODEC_ID_FLV1 &&
-					    0 == memcmp(videoTrack->Encoding, "V_MPEG4", 7))
+					if (get_codecpar(avContextTab[cAVIdx]->streams[packet.stream_index])->codec_id == AV_CODEC_ID_FLV1 && memcmp(videoTrack->Encoding, "V_MPEG4", 7) == 0)
 					{
 						flv2mpeg4_write_packet(context, &flv2mpeg4_context, videoTrack, cAVIdx, &currentVideoPts, &latestPts, &packet);
 						update_max_injected_pts(latestPts);
@@ -1328,7 +1327,7 @@ static void FFMPEGThread(Context_t *context)
 			{
 				static char errbuf[256];
 
-				if (0 == av_strerror(ffmpegStatus, errbuf, sizeof(errbuf)))
+				if (av_strerror(ffmpegStatus, errbuf, sizeof(errbuf)) == 0)
 				{
 					/* In this way we inform user about error within the core */
 					printf("{\"log\":\"Frame read error: '%s'\"}\n", errbuf);
@@ -1363,7 +1362,7 @@ static void FFMPEGThread(Context_t *context)
 				else if (1 == context->playback->isLoopMode)
 				{
 					int64_t tmpLength = 0;
-					if (0 == container_ffmpeg_get_length(context, &tmpLength) && tmpLength > 0 && get_play_pts() > 0)
+					if (container_ffmpeg_get_length(context, &tmpLength) == 0 && tmpLength > 0 && get_play_pts() > 0)
 					{
 #if defined(TS_BYTES_SEEKING) && TS_BYTES_SEEKING
 						if (avContextTab[0]->iformat->flags & AVFMT_TS_DISCONT)
@@ -1508,7 +1507,7 @@ int64_t SAM_SeekFunc(void *ptr, int64_t pos, int whence)
 		if (AVSEEK_SIZE != whence)
 		{
 			ret = (int64_t)fseeko(io->pFile, (off_t)pos, whence);
-			if (0 == ret)
+			if (ret == 0)
 			{
 				ret = (int64_t)ftello(io->pFile);
 			}
@@ -1611,8 +1610,7 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 		avContextTab[AVIdx]->interrupt_callback.opaque = context->playback;
 	}
 #ifdef USE_CUSTOM_IO
-	if (0 == strstr(filename, "://") ||
-	    0 == strncmp(filename, "file://", 7))
+	if (strstr(filename, "://") == 0 || strncmp(filename, "file://", 7) == 0)
 	{
 		AVIOContext *avio_ctx = NULL;
 		custom_io_tab[AVIdx] = malloc(sizeof(CustomIOCtx_t));
@@ -1648,7 +1646,7 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 
 	eRTMPProtoImplType rtmpProtoImplType = RTMP_NONE;
 	uint8_t numOfRTMPImpl = 0;
-	if (0 == strncmp(filename, "ffrtmp", 6))
+	if (strncmp(filename, "ffrtmp", 6) == 0)
 	{
 		filename = filename + 2;
 		rtmpProtoImplType = RTMP_NATIVE;
@@ -1663,12 +1661,12 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 		rtmpProtoImplType = RTMP_LIBRTMP;
 	}
 
-	if (0 == strncmp(filename, "rtmp://", 7) ||
-	    0 == strncmp(filename, "rtmpe://", 8) ||
-	    0 == strncmp(filename, "rtmps://", 8) ||
-	    0 == strncmp(filename, "rtmpt://", 8) ||
-	    0 == strncmp(filename, "rtmpte://", 9) ||
-	    0 == strncmp(filename, "rtmpts://", 9))
+	if (strncmp(filename, "rtmp://", 7) == 0 ||
+	    strncmp(filename, "rtmpe://", 8) == 0 ||
+	    strncmp(filename, "rtmps://", 8) == 0 ||
+	    strncmp(filename, "rtmpt://", 8) == 0 ||
+	    strncmp(filename, "rtmpte://", 9) == 0 ||
+	    strncmp(filename, "rtmpts://", 9) == 0)
 	{
 		/* At first we need to check which protocol
 		 * implementations we have
@@ -1679,17 +1677,17 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 
 		while ((protoName = avio_enum_protocols(&opaque, 1)))
 		{
-			if (0 == strcmp("rtmp", protoName))
+			if (strcmp("rtmp", protoName) == 0)
 			{
 				++numOfRTMPImpl;
 			}
-			else if (0 == strcmp("ffrtmp", protoName))
+			else if (strcmp("ffrtmp", protoName) == 0)
 			{
 				// ffmpeg has patch to have both native and librtmp implementations
 				++numOfRTMPImpl;
 				haveNativeProto = 2;
 			}
-			else if (0 == strncmp("rtmpts", protoName, 6))
+			else if (strncmp("rtmpts", protoName, 6) == 0)
 			{
 				// rtmpts is only available in native implementation
 				// rtmpts is listed after rtmp
@@ -1857,8 +1855,8 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 			}
 		}
 	}
-	else if (0 == strncmp(filename, "http://", 7) ||
-	    0 == strncmp(filename, "https://", 8))
+	else if (strncmp(filename, "http://", 7) == 0 ||
+		 strncmp(filename, "https://", 8) == 0)
 	{
 		av_dict_set(&avio_opts, "timeout", "20000000", 0); //20sec
 		av_dict_set(&avio_opts, "reconnect", "1", 0);
@@ -1927,7 +1925,7 @@ int32_t container_ffmpeg_init_av_context(Context_t *context, char *filename, uin
 	{
 		ffmpeg_real_read_org = avContextTab[AVIdx]->pb->read_packet;
 
-		if (0 == AVIdx && strstr(filename, "://") != 0 && strncmp(filename, "file://", 7) != 0)
+		if (AVIdx == 0 && strstr(filename, "://") != 0 && strncmp(filename, "file://", 7) != 0)
 		{
 			if (ffmpeg_buf_size > 0 && ffmpeg_buf_size > FILLBUFDIFF + FILLBUFPAKET)
 			{
@@ -2101,7 +2099,7 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 		{
 			uint32_t n = 0;
 			ffmpeg_printf(1, "cAVIdx[%d]: stream with multi programs: num of programs %d\n", cAVIdx, avContext->nb_programs);
-			for (n = 0; n < avContext->nb_programs && (0 == nb_stream_indexes || stream_index == NULL); n++)
+			for (n = 0; n < avContext->nb_programs && (nb_stream_indexes == 0 || stream_index == NULL); n++)
 			{
 				AVProgram *p = avContext->programs[n];
 				if (p->nb_stream_indexes)
@@ -2225,7 +2223,7 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 				case AVMEDIA_TYPE_VIDEO:
 					ffmpeg_printf(10, "CODEC_TYPE_VIDEO %d\n", get_codecpar(stream)->codec_type);
 					// do not discard any stream from second context
-					stream->discard = 0 == cAVIdx ? AVDISCARD_ALL : AVDISCARD_DEFAULT; /* by default we discard all video streams */
+					stream->discard = cAVIdx == 0 ? AVDISCARD_ALL : AVDISCARD_DEFAULT; /* by default we discard all video streams */
 
 					if (encoding != NULL)
 					{
@@ -2244,7 +2242,7 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 						track.aspect_ratio_num = stream->sample_aspect_ratio.num;
 						track.aspect_ratio_den = stream->sample_aspect_ratio.den;
 
-						if (0 == track.aspect_ratio_num  || 0 == track.aspect_ratio_den)
+						if (track.aspect_ratio_num == 0 || track.aspect_ratio_den == 0)
 						{
 							track.aspect_ratio_num = get_codecpar(stream)->sample_aspect_ratio.num;
 							track.aspect_ratio_den = get_codecpar(stream)->sample_aspect_ratio.den;
@@ -2290,7 +2288,7 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 						track.Id        = ((AVStream *)(track.stream))->id;
 
 						track.duration = (int64_t)av_rescale(stream->duration, (int64_t)stream->time_base.num * 1000, stream->time_base.den);
-						if (stream->duration == AV_NOPTS_VALUE || 0 == strncmp(avContext->iformat->name, "dash", 4))
+						if (stream->duration == AV_NOPTS_VALUE || strncmp(avContext->iformat->name, "dash", 4) == 0)
 						{
 							ffmpeg_printf(10, "Stream has no duration so we take the duration from context\n");
 							track.duration = (int64_t) avContext->duration / 1000;
@@ -2328,7 +2326,7 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 				case AVMEDIA_TYPE_AUDIO:
 					ffmpeg_printf(10, "CODEC_TYPE_AUDIO %d\n", get_codecpar(stream)->codec_type);
 					// do not discard any stream from second context
-					stream->discard = 0 == cAVIdx ? AVDISCARD_ALL : AVDISCARD_DEFAULT;
+					stream->discard = cAVIdx == 0 ? AVDISCARD_ALL : AVDISCARD_DEFAULT;
 
 					if (encoding != NULL)
 					{
@@ -2400,8 +2398,8 @@ int32_t container_ffmpeg_update_tracks(Context_t *context, char *filename, int32
 						}
 						else if (get_codecpar(stream)->codec_id == AV_CODEC_ID_AAC)
 						{
-							if (0 == strncmp(avContext->iformat->name, "mpegts", 6) ||
-							    0 == strncmp(avContext->iformat->name, "hls,", 4))
+							if (strncmp(avContext->iformat->name, "mpegts", 6) == 0 ||
+							    strncmp(avContext->iformat->name, "hls,", 4) == 0)
 							{
 								const char marker[] = "ADTS";
 								track.aacbuflen = sizeof(marker) / sizeof(char);
