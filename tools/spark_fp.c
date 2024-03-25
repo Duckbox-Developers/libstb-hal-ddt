@@ -259,9 +259,9 @@ int main(int argc, char **argv)
 // Not sure whether these are the original settings. --martii
 
 			case 'S':
-				if (2 == sscanf(optarg, "%d:%lx", &aotom.u.key.key_nr, (long unsigned int *) &aotom.u.key.key))
+				if (sscanf(optarg, "%d:%lx", &aotom.u.key.key_nr, (long unsigned int *) &aotom.u.key.key) == 2)
 					ioctl(fd, VFDSETSTBYKEY, &aotom);
-				if (1 == sscanf(optarg, "%d", &aotom.u.key.key_nr))
+				if (sscanf(optarg, "%d", &aotom.u.key.key_nr) == 1)
 				{
 					ret = ioctl(fd, VFDGETSTBYKEY, &aotom);
 					if (ret)
@@ -284,9 +284,9 @@ int main(int argc, char **argv)
 				}
 				break;
 			case 'B':
-				if (2 == sscanf(optarg, "%d:%lx", &aotom.u.key.key_nr, (long unsigned int *) &aotom.u.key.key))
+				if (sscanf(optarg, "%d:%lx", &aotom.u.key.key_nr, (long unsigned int *) &aotom.u.key.key) == 2)
 					ioctl(fd, VFDSETBLUEKEY, &aotom);
-				if (1 == sscanf(optarg, "%d", &aotom.u.key.key_nr))
+				if (sscanf(optarg, "%d", &aotom.u.key.key_nr) == 1)
 				{
 					ret = ioctl(fd, VFDGETBLUEKEY, &aotom);
 					if (ret)
