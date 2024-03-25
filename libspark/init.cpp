@@ -84,7 +84,7 @@ static void do_mknod(int i, char *d_name)
 		if (l > -1)
 		{
 			buf[l] = 0;
-			if (2 == sscanf(buf, "%d:%d", &input_device[i].major, &input_device[i].minor))
+			if (sscanf(buf, "%d:%d", &input_device[i].major, &input_device[i].minor) == 2)
 			{
 				mknod(input_device[i].name, 0666 | S_IFCHR,
 				    gnu_dev_makedev(input_device[i].major, input_device[i].minor));
