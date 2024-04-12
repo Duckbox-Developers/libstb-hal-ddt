@@ -35,6 +35,7 @@ class cPlayback
 
 		bool GetPrograms(std::vector<std::string> &keys, std::vector<std::string> &values);
 		bool SelectProgram(std::string &key);
+		std::string extractParam(const std::string &hdrs, const std::string &paramName);
 	public:
 		cPlayback(int num = 0);
 		~cPlayback();

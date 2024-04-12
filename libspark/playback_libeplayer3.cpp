@@ -52,6 +52,26 @@ void cPlayback::Close(void)
 	}
 }
 
+std::string cPlayback::extractParam(const std::string &hdrs, const std::string &paramName)
+{
+	size_t paramPos = hdrs.find(paramName);
+	if (paramPos != std::string::npos) {
+		size_t valuePos = paramPos + paramName.length();
+		size_t valueEndPos = hdrs.find('&', valuePos);
+		if (valueEndPos == std::string::npos) {
+		    valueEndPos = hdrs.length();
+		}
+		std::string value = hdrs.substr(valuePos, valueEndPos - valuePos);
+
+		size_t trailingSpacePos = value.find_last_not_of(" \t\r\n");
+		if (trailingSpacePos != std::string::npos) {
+		    value.erase(trailingSpacePos + 1);
+		}
+		return value;
+	}
+	return "";
+}
+
 bool cPlayback::Start(std::string filename, std::string headers)
 {
 	return Start((char *) filename.c_str(), 0, 0, 0, 0, 0, headers);
@@ -92,19 +112,29 @@ bool cPlayback::Start(char *filename, int vpid, int vtype, int apid, int ac3, in
 
 	if (isHTTP && headers.empty())
 	{
-		size_t pos = file.find('#');
-		if (pos != std::string::npos)
-		{
-			headers = file.substr(pos + 1);
-			pos = headers.find("User-Agent=");
-			if (pos != std::string::npos)
-				headers.replace(pos + 10, 1, ": ");
+		size_t pos = file.rfind('#');
+		if (pos != std::string::npos) {
+			std::string val;
+			std::string hdrs = file.substr(pos + 1);
+
+			val = extractParam(hdrs, "User-Agent=");
+			if (!val.empty()) {
+				headers += "User-Agent: " + val + "\n";
+			}
+			val = extractParam(hdrs, "Referer=");
+			if (!val.empty()) {
+				headers += "Referer: " + val + "\n";
+			}
+			if (!headers.empty()) {
+				file = file.substr(0, pos);
+			}
 		}
 	}
 
 	if (!headers.empty())
 	{
 		static AVDictionary *g_avio_opts = NULL;
+		printf("Headers List\n%s", headers.c_str());
 		const char hkey[] = "headers";
 		av_dict_set(&g_avio_opts, hkey, headers.c_str(), 0);
 	}
