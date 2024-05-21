@@ -136,8 +136,8 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_has_statusline = 1;
 	caps.display_has_colon = 0;
 	caps.has_button_timer = 1;
-	caps.has_HDMI = 2;
-	caps.has_HDMI_input = 1;
+	caps.has_HDMI = 1;		// 2
+	caps.has_HDMI_input = 0;	// 1
 	strcpy(caps.boxvendor, "DM");
 	strcpy(caps.boxname, "820HD");
 	strcpy(caps.boxarch, "BCM7434");
@@ -149,9 +149,9 @@ hw_caps_t *get_hwcaps(void)
 	caps.display_xres = 4;
 	caps.display_has_colon = 1;
 	caps.display_type = HW_DISPLAY_LED_NUM;
-	caps.display_can_deepstandby = 1;	// 0 because we use graphlcd/lcd4linux
-	caps.display_can_set_brightness = 1;	// 0 because we use graphlcd/lcd4linux
-	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_deepstandby = 1;
+	caps.display_can_set_brightness = 1;
+	caps.display_has_statusline = 0;
 	caps.has_button_timer = 1;
 	caps.has_HDMI = 1;
 	caps.has_SCART = 1;
