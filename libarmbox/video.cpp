@@ -206,7 +206,11 @@ static const char *vid_modes[] =
 #define VIDEO_STREAMTYPE_MPEG4_Part2 4
 #define VIDEO_STREAMTYPE_VC1_SM 5
 #define VIDEO_STREAMTYPE_MPEG1 6
+#if BOXMODEL_DREAMBOX_ALL
+#define VIDEO_STREAMTYPE_H265_HEVC 22
+#else
 #define VIDEO_STREAMTYPE_H265_HEVC 7
+#endif
 #define VIDEO_STREAMTYPE_AVS 16
 
 ssize_t write_all(int fd, const void *buf, size_t count)
