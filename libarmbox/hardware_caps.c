@@ -221,6 +221,24 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxvendor, "AXAS");
 	strcpy(caps.boxname, "E4HD 4K ULTRA");
 	strcpy(caps.boxarch, "BCM7252S");
+#elif BOXMODEL_DM900
+	initialized = 1;
+	caps.has_CI = 1;
+	caps.can_cec = 1;
+	caps.can_shutdown = 1;
+	caps.display_xres = 400;
+	caps.display_yres = 240;
+	caps.display_type = HW_DISPLAY_GFX;
+	caps.display_can_deepstandby = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_can_set_brightness = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_statusline = 0;	// 0 because we use graphlcd/lcd4linux
+	caps.display_has_colon = 0;
+	caps.has_button_timer = 1;
+	caps.has_HDMI = 1;			// 2
+	caps.has_HDMI_input = 0;		// 1
+	strcpy(caps.boxvendor, "DM");
+	strcpy(caps.boxname, "900 UHD");
+	strcpy(caps.boxarch, "BCM7252S");
 #else // generic arm box
 	initialized = 1;
 	caps.has_CI = 1;
