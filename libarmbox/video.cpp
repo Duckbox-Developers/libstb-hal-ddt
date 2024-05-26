@@ -1150,7 +1150,7 @@ void cVideo::SetControl(int control, int value)
 	}
 }
 
-#if BOXMODEL_VUPLUS_ARM
+#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM900
 void cVideo::SetHDMIColorimetry(HDMI_COLORIMETRY hdmi_colorimetry)
 {
 	const char *p = NULL;
