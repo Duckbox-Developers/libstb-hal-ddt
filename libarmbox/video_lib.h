@@ -10,7 +10,7 @@ typedef struct cs_vs_format_t
 	char format[16];
 } cs_vs_format_struct_t;
 
-#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM7080 || BOXMODEL_DM900
+#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM7080 || BOXMODEL_DM900 || BOXMODEL_DM920
 typedef enum
 {
 	HDMI_COLORIMETRY_AUTO,
