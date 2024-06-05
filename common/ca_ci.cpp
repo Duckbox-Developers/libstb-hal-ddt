@@ -1020,6 +1020,70 @@ void cCA::extractPids(eDVBCISlot *slot)
 }
 #endif
 
+#if BOXMODEL_DREAMBOX_ALL
+char* cCA::readInputCI(int tuner_no)
+{
+	char id1[] = "NIM Socket";
+	char id2[] = "Input_Name";
+	char keys1[] = "1234567890";
+	char keys2[] = "12ABCDabcd";
+	char *inputName = 0;
+	char buf[256];
+	FILE *f;
+
+	f = fopen("/proc/bus/nim_sockets", "rt");
+	if (f)
+	{
+		while (fgets(buf, sizeof(buf), f))
+		{
+			char *p = strcasestr(buf, id1);
+			if (!p)
+				continue;
+
+			p += strlen(id1);
+			p += strcspn(p, keys1);
+			if (*p && strtol(p, 0, 0) == tuner_no)
+				break;
+		}
+
+		while (fgets(buf, sizeof(buf), f))
+		{
+			if (strcasestr(buf, id1))
+				break;
+
+			char *p = strcasestr(buf, id2);
+			if (!p)
+				continue;
+
+			p = strchr(p + strlen(id2), ':');
+			if (!p)
+				continue;
+
+			p++;
+			p += strcspn(p, keys2);
+			size_t len = strspn(p, keys2);
+			if (len > 0)
+			{
+				inputName = strndup(p, len);
+				break;
+			}
+		}
+
+		fclose(f);
+	}
+
+	return inputName;
+}
+
+std::string cCA::getTunerLetterDM(int tuner_no)
+{
+	char *srcCI = readInputCI(tuner_no);
+	if (srcCI)
+		return std::string(srcCI);
+	return cCA::getTunerLetter(tuner_no);
+}
+#endif
+
 void cCA::setSource(eDVBCISlot *slot)
 {
 	char buf[64];
@@ -1028,6 +1092,9 @@ void cCA::setSource(eDVBCISlot *slot)
 
 	if (ci > (void *)0)
 	{
+#if BOXMODEL_DREAMBOX_ALL
+		fprintf(ci, cCA::readInputCI(slot->source));
+#else
 		switch (slot->source)
 		{
 			case TUNER_A:
@@ -1107,6 +1174,7 @@ void cCA::setSource(eDVBCISlot *slot)
 #endif
 #endif
 		}
+#endif
 		fclose(ci);
 	}
 }
@@ -1144,8 +1212,13 @@ void cCA::setInputs()
 		fd = fopen(input, "wb");
 		if (fd)
 		{
+#if BOXMODEL_DREAMBOX_ALL
+			printf("set input%d to tuner %s\n", number, getTunerLetterDM(number).c_str());
+			fprintf(fd, cCA::readInputCI(number));
+#else
 			printf("set input%d to tuner %s\n", number, getTunerLetter(number).c_str());
 			fprintf(fd, "%s", getTunerLetter(number).c_str());
+#endif
 			fclose(fd);
 		}
 		else
@@ -1178,6 +1251,9 @@ void cCA::setInputSource(eDVBCISlot *slot, bool ci)
 		}
 		else
 		{
+#if BOXMODEL_DREAMBOX_ALL
+			fprintf(input, cCA::readInputCI(slot->source));
+#else
 			switch (slot->source)
 			{
 				case TUNER_A:
@@ -1257,6 +1333,7 @@ void cCA::setInputSource(eDVBCISlot *slot, bool ci)
 #endif
 #endif
 			}
+#endif
 		}
 		fclose(input);
 	}

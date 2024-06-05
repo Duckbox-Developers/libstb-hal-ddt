@@ -10,6 +10,10 @@
 #include <vector>
 #include <set>
 
+#if BOXMODEL_DREAMBOX_ALL
+#include <string>
+#endif
+
 #include "mmi.h"
 #include "cs_types.h"
 
@@ -321,6 +325,11 @@ class cCA
 		pthread_mutex_t ciMutex;
 		std::list<eDVBCISlot *> slot_data;
 		pthread_t slot_thread;
+#if BOXMODEL_DREAMBOX_ALL
+		static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
+		static std::string getTunerLetterDM(int);
+		static char* readInputCI(int);
+#endif
 
 	public:
 		/// sh4 unused
