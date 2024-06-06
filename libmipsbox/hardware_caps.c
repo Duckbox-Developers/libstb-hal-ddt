@@ -108,8 +108,10 @@ hw_caps_t *get_hwcaps(void)
 	caps.has_CI = 2;
 	caps.can_cec = 0;
 	caps.can_shutdown = 1;
-	caps.display_xres = 400;
-	caps.display_yres = 240;
+	caps.display_xres = 132;
+	caps.display_yres = 64;
+//	caps.display_xres = 400;		Grautec lcd
+//	caps.display_yres = 240;		Grautec lcd
 	caps.display_type = HW_DISPLAY_GFX;
 	caps.display_can_deepstandby = 1;
 	caps.display_can_set_brightness = 1;
@@ -148,6 +150,8 @@ hw_caps_t *get_hwcaps(void)
 	caps.can_shutdown = 1;
 	caps.display_xres = 128;
 	caps.display_yres = 64;
+//	caps.display_xres = 400;		Grautec lcd
+//	caps.display_yres = 240;		Grautec lcd
 	caps.display_type = HW_DISPLAY_GFX;
 	caps.display_can_deepstandby = 1;
 	caps.display_can_set_brightness = 1;
