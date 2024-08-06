@@ -183,6 +183,44 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxvendor, "DM");
 	strcpy(caps.boxname, "7080HD");
 	strcpy(caps.boxarch, "BCM7434");
+#elif BOXMODEL_DM800SE
+	initialized = 1;
+	caps.has_CI = 2;
+	caps.can_cec = 1;
+	caps.can_shutdown = 1;
+	caps.display_xres = 132;
+	caps.display_yres = 64;
+	caps.display_type = HW_DISPLAY_GFX;
+	caps.display_can_deepstandby = 1;
+	caps.display_can_set_brightness = 1;
+	caps.display_has_statusline = 1;
+	caps.display_has_colon = 0;
+	caps.has_button_timer = 1;
+	caps.has_HDMI = 1;
+	caps.has_SCART = 1;
+//	caps.has_SCART_input = 1;
+	strcpy(caps.boxvendor, "DM");
+	strcpy(caps.boxname, "800HD SE");
+	strcpy(caps.boxarch, "BCM7405");
+#elif BOXMODEL_DM800SEV2
+	initialized = 1;
+	caps.has_CI = 2;
+	caps.can_cec = 1;
+	caps.can_shutdown = 1;
+	caps.display_xres = 132;
+	caps.display_yres = 64;
+	caps.display_type = HW_DISPLAY_GFX;
+	caps.display_can_deepstandby = 1;
+	caps.display_can_set_brightness = 1;
+	caps.display_has_statusline = 1;
+	caps.display_has_colon = 0;
+	caps.has_button_timer = 1;
+	caps.has_HDMI = 1;
+	caps.has_SCART = 1;
+//	caps.has_SCART_input = 1;
+	strcpy(caps.boxvendor, "DM");
+	strcpy(caps.boxname, "800HD SE V2");
+	strcpy(caps.boxarch, "BCM7405");
 #else // generic mips box
 	initialized = 1;
 	caps.has_CI = 1;
