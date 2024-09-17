@@ -38,7 +38,7 @@ class cDemux
 		bool Start(bool record = false);
 		bool Stop(void);
 		int Read(unsigned char *buff, int len, int Timeout = 0);
-		bool sectionFilter(unsigned short pid, const unsigned char *const filter, const unsigned char *const mask, int len, int Timeout = 0, const unsigned char *const negmask = NULL);
+		bool sectionFilter(unsigned short _pid, const unsigned char *const filter, const unsigned char *const mask, int len, int Timeout = 0, const unsigned char *const negmask = NULL);
 		bool pesFilter(const unsigned short pid);
 		void SetSyncMode(AVSYNC_TYPE mode);
 		void *getBuffer();
