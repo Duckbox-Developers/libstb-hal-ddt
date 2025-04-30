@@ -356,6 +356,9 @@ class cCA
 		/// relevant pids routing
 		void SetCIRelevantPidsRouting(int RPR, int slot = 0);
 #endif
+		/// ci operator mode
+		int op[4];
+		void SetCIOperator(int ciop, int slot = 0);
 
 		/// Start the CA module
 		/// sh4 unused
