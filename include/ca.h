@@ -109,9 +109,9 @@ class cCA
 		uint32_t GetNumberSmartCardSlots(void);
 		static cCA *GetInstance(void);
 		bool SendPMT(int Unit, unsigned char *Data, int Len, CA_SLOT_TYPE SlotType = CA_SLOT_TYPE_ALL);
-//	bool SendCAPMT(u64 /*Source*/, u8 /*DemuxSource*/, u8 /*DemuxMask*/, const unsigned char * /*CAPMT*/, u32 /*CAPMTLen*/, const unsigned char * /*RawPMT*/, u32 /*RawPMTLen*/) { return true; };
-		bool SendCAPMT(u64 /*Source*/, u8 /*DemuxSource*/, u8 /*DemuxMask*/, const unsigned char * /*CAPMT*/, u32 /*CAPMTLen*/, const unsigned char * /*RawPMT*/, u32 /*RawPMTLen*/, enum CA_SLOT_TYPE
-		    /*SlotType*/, unsigned char /*scrambled = 0*/, ca_map_t /*camap = std::set<int>()*/, int /*mode = 0*/, bool /*enabled = false*/)
+//		bool SendCAPMT(u64 /*Source*/, u8 /*DemuxSource*/, u8 /*DemuxMask*/, const unsigned char * /*CAPMT*/, u32 /*CAPMTLen*/, const unsigned char * /*RawPMT*/, u32 /*RawPMTLen*/) { return true; };
+		bool SendCAPMT(u64 /*Source*/, u8 /*DemuxSource*/, u8 /*DemuxMask*/, const unsigned char * /*CAPMT*/, u32 /*CAPMTLen*/, const unsigned char * /*RawPMT*/, u32 /*RawPMTLen*/,
+				enum CA_SLOT_TYPE /*SlotType*/, unsigned char /*scrambled = 0*/, ca_map_t /*camap = std::set<int>()*/, int /*mode = 0*/, bool /*enabled = false*/)
 		{
 			return true;
 		};
@@ -131,6 +131,10 @@ class cCA
 		void InputAnswer(enum CA_SLOT_TYPE, uint32_t Slot, uint8_t *Data, int Len);
 		void MenuClose(enum CA_SLOT_TYPE, uint32_t Slot);
 		void SetTSClock(u32 /*Speed*/, int /*slot*/)
+		{
+			return;
+		};
+		void SetCIOperator(int /*ciop*/, int /*slot = 0*/)
 		{
 			return;
 		};
