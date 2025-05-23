@@ -3424,7 +3424,8 @@ static int container_ffmpeg_get_metadata(Context_t *context, char ***p)
 
 	// find the first attached picture, if available
 	unlink("/tmp/.id3coverart");
-	for (unsigned int i = 0; i < avContextTab[0]->nb_streams; i++)
+	unsigned int i;
+	for (i = 0; i < avContextTab[0]->nb_streams; i++)
 	{
 		if (avContextTab[0]->streams[i]->disposition & AV_DISPOSITION_ATTACHED_PIC)
 		{

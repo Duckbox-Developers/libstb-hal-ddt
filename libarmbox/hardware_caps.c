@@ -172,6 +172,22 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxvendor, "WWIO");
 	strcpy(caps.boxname, "BRE2ZE4K");
 	strcpy(caps.boxarch, "BCM7251S");
+#elif BOXMODEL_DCUBE
+	initialized = 1;
+	caps.has_CI = 1;
+	caps.can_cec = 0;
+	caps.can_shutdown = 1;
+	caps.display_xres = 11;
+	caps.display_type = HW_DISPLAY_LINE_TEXT;
+	caps.display_can_deepstandby = 0;
+	caps.display_can_set_brightness = 1;
+	caps.display_has_statusline = 0;
+	caps.display_has_colon = 0;
+	caps.has_button_timer = 1;
+	caps.has_HDMI = 1;
+	strcpy(caps.boxvendor, "D-Cube");
+	strcpy(caps.boxname, "R2");
+	strcpy(caps.boxarch, "PNX8471");
 #elif BOXMODEL_HD51
 	initialized = 1;
 	caps.has_CI = 1;

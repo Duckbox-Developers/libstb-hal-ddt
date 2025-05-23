@@ -191,7 +191,7 @@ AC_ARG_WITH(boxtype,
 			BOXTYPE="duckbox"
 			BOXMODEL="$withval"
 		;;
-		hd51|hd60|hd61|bre2ze4k|e4hdultra|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuzero4k|vuuno4kse|vuuno4k|h7|osmio4k|osmio4kplus|dm900|dm920)
+		hd51|hd60|hd61|bre2ze4k|e4hdultra|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuzero4k|vuuno4kse|vuuno4k|h7|osmio4k|osmio4kplus|dm900|dm920|dcube)
 			BOXTYPE="armbox"
 			BOXMODEL="$withval"
 		;;
@@ -209,7 +209,7 @@ AC_ARG_WITH(boxmodel,
 	AS_HELP_STRING([--with-boxmodel], [valid for generic: raspi])
 AS_HELP_STRING([], [valid for duckbox: ufs910, ufs912, ufs913, ufs922, atevio7500, fortis_hdbox, octagon1008, cuberevo, cuberevo_mini, cuberevo_mini2, cuberevo_250hd, cuberevo_2000hd, cuberevo_3000hd, ipbox9900, ipbox99, ipbox55, tf7700])
 AS_HELP_STRING([], [valid for spark: spark, spark7162])
-AS_HELP_STRING([], [valid for armbox: bre2ze4k, hd51, hd60, hd61, vusolo4k, vuduo4k, vuduo4kse, vuultimo4k, vuzero4k, vuuno4kse, vuuno4k, h7, osmio4k, osmio4kplus, e4hdultra, dm900, dm920])
+AS_HELP_STRING([], [valid for armbox: bre2ze4k, hd51, hd60, hd61, vusolo4k, vuduo4k, vuduo4kse, vuultimo4k, vuzero4k, vuuno4kse, vuuno4k, h7, osmio4k, osmio4kplus, e4hdultra, dm900, dm920, dcube])
 AS_HELP_STRING([], [valid for mipsbox: vuduo, vuduo2, vuuno, vuultimo, dm7020hd, dm820, dm7080, dm8000, dm800se, dm800sev2]),
 	[case "${withval}" in
 		ufs910|ufs912|ufs913|ufs922|atevio7500|fortis_hdbox|octagon1008|cuberevo|cuberevo_mini|cuberevo_mini2|cuberevo_250hd|cuberevo_2000hd|cuberevo_3000hd|ipbox9900|ipbox99|ipbox55|tf7700)
@@ -226,7 +226,7 @@ AS_HELP_STRING([], [valid for mipsbox: vuduo, vuduo2, vuuno, vuultimo, dm7020hd,
 				AC_MSG_ERROR([unknown model $withval for boxtype $BOXTYPE])
 			fi
 		;;
-		hd51|hd60|hd61|bre2ze4k|e4hdultra|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuzero4k|vuuno4kse|vuuno4k|h7|osmio4k|osmio4kplus|dm900|dm920)
+		hd51|hd60|hd61|bre2ze4k|e4hdultra|vusolo4k|vuduo4k|vuduo4kse|vuultimo4k|vuzero4k|vuuno4kse|vuuno4k|h7|osmio4k|osmio4kplus|dm900|dm920|dcube)
 			if test "$BOXTYPE" = "armbox"; then
 				BOXMODEL="$withval"
 			else
@@ -282,6 +282,7 @@ AM_CONDITIONAL(BOXMODEL_IPBOX99, test "$BOXMODEL" = "ipbox99")
 AM_CONDITIONAL(BOXMODEL_IPBOX55, test "$BOXMODEL" = "ipbox55")
 AM_CONDITIONAL(BOXMODEL_TF7700, test "$BOXMODEL" = "tf7700")
 
+AM_CONDITIONAL(BOXMODEL_DCUBE, test "$BOXMODEL" = "dcube")
 AM_CONDITIONAL(BOXMODEL_HD51, test "$BOXMODEL" = "hd51")
 AM_CONDITIONAL(BOXMODEL_HD60, test "$BOXMODEL" = "hd60")
 AM_CONDITIONAL(BOXMODEL_HD61, test "$BOXMODEL" = "hd61")
@@ -377,6 +378,8 @@ elif test "$BOXMODEL" = "bre2ze4k"; then
 	AC_DEFINE(BOXMODEL_BRE2ZE4K, 1, [bre2ze4k])
 elif test "$BOXMODEL" = "e4hdultra"; then
 	AC_DEFINE(BOXMODEL_E4HDULTRA, 1, [e4hdultra])
+elif test "$BOXMODEL" = "dcube"; then
+	AC_DEFINE(BOXMODEL_DCUBE, 1, [dcube])
 elif test "$BOXMODEL" = "hd51"; then
 	AC_DEFINE(BOXMODEL_HD51, 1, [hd51])
 elif test "$BOXMODEL" = "hd60"; then
