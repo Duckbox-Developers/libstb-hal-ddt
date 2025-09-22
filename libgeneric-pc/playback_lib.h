@@ -8,7 +8,7 @@
 typedef enum
 {
 	PLAYMODE_TS = 0,
-	PLAYMODE_FILE,
+	PLAYMODE_FILE
 } playmode_t;
 
 struct AVFormatContext;

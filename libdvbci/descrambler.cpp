@@ -32,13 +32,13 @@ typedef struct ca_pid
 enum ca_descr_data_type
 {
 	CA_DATA_IV,
-	CA_DATA_KEY,
+	CA_DATA_KEY
 };
 
 enum ca_descr_parity
 {
 	CA_PARITY_EVEN,
-	CA_PARITY_ODD,
+	CA_PARITY_ODD
 };
 
 struct ca_descr_data

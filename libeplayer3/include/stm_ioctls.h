@@ -271,7 +271,7 @@ typedef enum
 
 	DVB_OPTION_PIXEL_ASPECT_RATIO_CORRECTION                                            = 32,
 
-	DVB_OPTION_H264_FORCE_PIC_ORDER_CNT_IGNORE_DPB_DISPLAY_FRAME_ORDERING       = 33,
+	DVB_OPTION_H264_FORCE_PIC_ORDER_CNT_IGNORE_DPB_DISPLAY_FRAME_ORDERING               = 33,
 
 	DVB_OPTION_PTS_SYMMETRIC_JUMP_DETECTION                                             = 34,
 
@@ -279,7 +279,7 @@ typedef enum
 
 	/* OPTION_MAX must always be one greater than largest option - currently DVB_OPTION_ALLOW_FRAME_DISCARD_AT_NORMAL_SPEED */
 
-	DVB_OPTION_MAX                                                                      = 35
+	DVB_OPTION_MAX                                                                      = 36
 } dvb_option_t;
 
 // Legacy typo correction

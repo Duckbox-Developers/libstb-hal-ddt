@@ -47,7 +47,7 @@ typedef enum OutputType_e
 {
 	OUTPUT_UNK,
 	OUTPUT_AUDIO,
-	OUTPUT_VIDEO,
+	OUTPUT_VIDEO
 } OutputType_t;
 
 typedef struct BufferingNode_s
