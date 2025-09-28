@@ -855,4 +855,3 @@ void hdmi_cec::SetAudioDestination(int audio_dest)
 			break;
 	}
 }
-

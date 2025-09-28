@@ -53,4 +53,3 @@ typedef struct
 #define MMI_ENGUIRY_INFO MMI_ENQUIRY_INFO
 
 #endif // __MMI_H__
-

@@ -280,4 +280,3 @@ int eDVBCIMMISession::cancelEnq()
 
 	return 0;
 }
-

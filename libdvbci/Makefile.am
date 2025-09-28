@@ -19,4 +19,3 @@ libdvbci_la_SOURCES = \
 	dvbci_appmgr.cpp \
 	dvbci_datetimemgr.cpp \
 	dvbci_resmgr.cpp
-

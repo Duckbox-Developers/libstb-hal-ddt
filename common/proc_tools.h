@@ -11,9 +11,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-int proc_put(const char *path, const char *value, const int len);
-int proc_get(const char *path, char *value, const int len);
-unsigned int proc_get_hex(const char *path);
+	int proc_put(const char *path, const char *value, const int len);
+	int proc_get(const char *path, char *value, const int len);
+	unsigned int proc_get_hex(const char *path);
 #ifdef __cplusplus
 }
 #endif

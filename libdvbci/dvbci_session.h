@@ -75,5 +75,4 @@ class eDVBCIHostControlSession: public eDVBCISession
 		~eDVBCIHostControlSession();
 };
 
-
 #endif

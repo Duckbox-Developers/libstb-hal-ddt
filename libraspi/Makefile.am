@@ -23,4 +23,3 @@ libraspi_la_SOURCES = \
 	playback.cpp \
 	pwrmngr.cpp \
 	record.cpp
-

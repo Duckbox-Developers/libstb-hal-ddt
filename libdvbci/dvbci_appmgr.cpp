@@ -164,4 +164,3 @@ int eDVBCIApplicationManagerSession::checkBlist()
 	}
 	return 0;
 }
-

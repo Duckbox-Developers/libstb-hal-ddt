@@ -1463,4 +1463,3 @@ void eDVBCIContentControlManagerSession::resendKey(eDVBCISlot *tslot)
 #endif
 	}
 }
-
