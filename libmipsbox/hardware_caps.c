@@ -185,7 +185,7 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxarch, "BCM7434");
 #elif BOXMODEL_DM800SE
 	initialized = 1;
-	caps.has_CI = 2;
+	caps.has_CI = 0;
 	caps.can_cec = 1;
 	caps.can_shutdown = 1;
 	caps.display_xres = 132;
@@ -204,7 +204,7 @@ hw_caps_t *get_hwcaps(void)
 	strcpy(caps.boxarch, "BCM7405");
 #elif BOXMODEL_DM800SEV2
 	initialized = 1;
-	caps.has_CI = 2;
+	caps.has_CI = 0;
 	caps.can_cec = 1;
 	caps.can_shutdown = 1;
 	caps.display_xres = 132;
