@@ -122,7 +122,7 @@ hw_caps_t *get_hwcaps(void)
 //	caps.has_DVI = 1;
 	strcpy(caps.boxvendor, "DM");
 	strcpy(caps.boxname, "800HD");
-	strcpy(caps.boxarch, "BCM97xxx/BRCM3300");
+	strcpy(caps.boxarch, "BCM7401");
 #elif BOXMODEL_DM800SE
 	initialized = 1;
 	caps.has_CI = 0;
