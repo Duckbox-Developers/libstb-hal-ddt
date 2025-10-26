@@ -288,9 +288,8 @@ void write_frame(AVFrame *in_frame, int fd)
 				if (!ret)
 				{
 #endif
-					int i = 1;
 					/* get the delayed frames */
-					in_frame->pts = i;
+					in_frame->pts = 1;
 #if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(57,37,100)
 					ret = avcodec_encode_video2(codec_context, &pkt, 0, &got_output);
 					if (ret != -1 && got_output)
